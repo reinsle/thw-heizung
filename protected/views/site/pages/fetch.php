@@ -33,18 +33,41 @@ $this->breadcrumbs=array(
     } 
 
     $url='http://ov-kempten.ov-cms.thw.de/unser-thw-ortsverband/terminkalender/kalender/ics/?type=150&tx_cal_controller%5Bcalendar%5D=20';
-
     $temp = tempnam('/tmp', 'thw-kempten');
-
     file_put_contents($temp, file_get_contents($url));
-
     $data = icsTOArray($temp);
+    foreach ($data as &$value) {
+        echo '1';
+        if ($value['BEGIN'] == 'VEVENT') {
+            $criteria = new CDbCriteria;
+            $criteria->condition = "'uid' = '".trim($value['UID'])."'";
+            $models = Events::model()->findAll($criteria);
+            if (count($models) > 0) {
+                // Update Date to Events model
 
-    echo '<br />';
-    echo json_encode($data);
+            } else {
+                // Create new Events model from data
+                $event = new Events();
+                $event->uid = $value['UID'];
 
+                if (array_key_exists('SUMMARY', $value)) {
+                    $event->summary = $value['SUMMARY'];
+                }
+                if (array_key_exists('DESCRIPTION', $value)) {
+                    $event->description = $value['DESCRIPTION'];
+                }
+                if (array_key_exists('LOCATION', $value)) {
+                    $event->location = $value['LOCATION'];
+                }
+                $event->save();
+            }
+            echo 'laber <br />';
+        }
+    }
     unlink($temp);
-
+    unset($url);
+    unset($temp);
+    unset($data);
 ?>
 <p>This is a "static" page. You may change the content of this page
 by updating the file <code><?php echo __FILE__; ?></code>.</p>
