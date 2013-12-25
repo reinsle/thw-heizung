@@ -6,8 +6,7 @@ $this->breadcrumbs=array(
 	'Fetch',
 );
 ?>
-<h1>Fetch</h1>
-
+<h1>Aktualisierung der Event-Daten</h1>
 
 <?php
 
@@ -40,63 +39,67 @@ $this->breadcrumbs=array(
     $insert = 0;
     $update = 0;
     foreach ($data as &$value) {
-        if ($value['BEGIN'] == 'VEVENT') {
-            $criteria = new CDbCriteria;
-            $criteria->condition = "uid = '".trim($value['UID'])."'";
-            $models = Events::model()->findAll($criteria);
-            if (count($models) > 0) {
-                // Update Date to Events model
-                $event = $models[0];
-                if (array_key_exists('DTSTAMP', $value)) {
-                    $ts = strtotime($value['DTSTAMP']);
-                    $event->dtstamp = date(DateTime::RFC1123, $ts);
+        if ($value['BEGIN'] == 'VEVENT' && array_key_exists('DTEND', $value)) {
+            $dtend = strtotime($value['DTEND']);
+            $weeks = strtotime('-1 week');
+            if ($dtend > $weeks) {
+                $criteria = new CDbCriteria;
+                $criteria->condition = "uid = '".trim($value['UID'])."'";
+                $models = Events::model()->findAll($criteria);
+                if (count($models) > 0) {
+                    // Update Date to Events model
+                    $event = $models[0];
+                    if (array_key_exists('DTSTAMP', $value)) {
+                        $ts = strtotime($value['DTSTAMP']);
+                        $event->dtstamp = date(DateTime::RFC1123, $ts);
+                    }
+                    if (array_key_exists('DTSTART', $value)) {
+                        $ts = strtotime($value['DTSTART']);
+                        $event->dtstart = date(DateTime::RFC1123, $ts);
+                    }
+                    if (array_key_exists('DTEND', $value)) {
+                        $ts = strtotime($value['DTEND']);
+                        $event->dtend = date(DateTime::RFC1123, $ts);
+                    }
+                    if (array_key_exists('SUMMARY', $value)) {
+                        $event->summary = trim($value['SUMMARY']);
+                    }
+                    if (array_key_exists('DESCRIPTION', $value)) {
+                        $event->description = trim($value['DESCRIPTION']);
+                    }
+                    if (array_key_exists('LOCATION', $value)) {
+                        $event->location = trim($value['LOCATION']);
+                    }
+                    $event->save();
+                    $update++;
+                } else {
+                    // Create new Events model from data
+                    $event = new Events();
+                    $event->uid = trim($value['UID']);
+                    if (array_key_exists('DTSTAMP', $value)) {
+                        $ts = strtotime($value['DTSTAMP']);
+                        $event->dtstamp = date(DateTime::RFC1123, $ts);
+                    }
+                    if (array_key_exists('DTSTART', $value)) {
+                        $ts = strtotime($value['DTSTART']);
+                        $event->dtstart = date(DateTime::RFC1123, $ts);
+                    }
+                    if (array_key_exists('DTEND', $value)) {
+                        $ts = strtotime($value['DTEND']);
+                        $event->dtend = date(DateTime::RFC1123, $ts);
+                    }
+                    if (array_key_exists('SUMMARY', $value)) {
+                        $event->summary = trim($value['SUMMARY']);
+                    }
+                    if (array_key_exists('DESCRIPTION', $value)) {
+                        $event->description = trim($value['DESCRIPTION']);
+                    }
+                    if (array_key_exists('LOCATION', $value)) {
+                        $event->location = trim($value['LOCATION']);
+                    }
+                    $event->save();
+                    $insert++;
                 }
-                if (array_key_exists('DTSTART', $value)) {
-                    $ts = strtotime($value['DTSTART']);
-                    $event->dtstart = date(DateTime::RFC1123, $ts);
-                }
-                if (array_key_exists('DTEND', $value)) {
-                    $ts = strtotime($value['DTEND']);
-                    $event->dtend = date(DateTime::RFC1123, $ts);
-                }
-                if (array_key_exists('SUMMARY', $value)) {
-                    $event->summary = trim($value['SUMMARY']);
-                }
-                if (array_key_exists('DESCRIPTION', $value)) {
-                    $event->description = trim($value['DESCRIPTION']);
-                }
-                if (array_key_exists('LOCATION', $value)) {
-                    $event->location = trim($value['LOCATION']);
-                }
-                $event->save();
-                $update++;
-            } else {
-                // Create new Events model from data
-                $event = new Events();
-                $event->uid = trim($value['UID']);
-                if (array_key_exists('DTSTAMP', $value)) {
-                    $ts = strtotime($value['DTSTAMP']);
-                    $event->dtstamp = date(DateTime::RFC1123, $ts);
-                }
-                if (array_key_exists('DTSTART', $value)) {
-                    $ts = strtotime($value['DTSTART']);
-                    $event->dtstart = date(DateTime::RFC1123, $ts);
-                }
-                if (array_key_exists('DTEND', $value)) {
-                    $ts = strtotime($value['DTEND']);
-                    $event->dtend = date(DateTime::RFC1123, $ts);
-                }
-                if (array_key_exists('SUMMARY', $value)) {
-                    $event->summary = trim($value['SUMMARY']);
-                }
-                if (array_key_exists('DESCRIPTION', $value)) {
-                    $event->description = trim($value['DESCRIPTION']);
-                }
-                if (array_key_exists('LOCATION', $value)) {
-                    $event->location = trim($value['LOCATION']);
-                }
-                $event->save();
-                $insert++;
             }
         }
     }
