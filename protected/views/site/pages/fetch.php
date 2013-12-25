@@ -37,27 +37,37 @@ $this->breadcrumbs=array(
     file_put_contents($temp, file_get_contents($url));
     $data = icsTOArray($temp);
     foreach ($data as &$value) {
-        echo '1';
         if ($value['BEGIN'] == 'VEVENT') {
             $criteria = new CDbCriteria;
-            $criteria->condition = "'uid' = '".trim($value['UID'])."'";
+            $criteria->condition = "uid = '".trim($value['UID'])."'";
             $models = Events::model()->findAll($criteria);
             if (count($models) > 0) {
                 // Update Date to Events model
+                $event = $models[0];
 
+                if (array_key_exists('SUMMARY', $value)) {
+                    $event->summary = trim($value['SUMMARY']);
+                }
+                if (array_key_exists('DESCRIPTION', $value)) {
+                    $event->description = trim($value['DESCRIPTION']);
+                }
+                if (array_key_exists('LOCATION', $value)) {
+                    $event->location = trim($value['LOCATION']);
+                }
+                $event->save();
             } else {
                 // Create new Events model from data
                 $event = new Events();
-                $event->uid = $value['UID'];
+                $event->uid = trim($value['UID']);
 
                 if (array_key_exists('SUMMARY', $value)) {
-                    $event->summary = $value['SUMMARY'];
+                    $event->summary = trim($value['SUMMARY']);
                 }
                 if (array_key_exists('DESCRIPTION', $value)) {
-                    $event->description = $value['DESCRIPTION'];
+                    $event->description = trim($value['DESCRIPTION']);
                 }
                 if (array_key_exists('LOCATION', $value)) {
-                    $event->location = $value['LOCATION'];
+                    $event->location = trim($value['LOCATION']);
                 }
                 $event->save();
             }
