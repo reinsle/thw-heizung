@@ -32,7 +32,7 @@ $cs->registerCssFile($url);
 
     <div class="row">
         <?php echo $form->labelEx($model, 'uid'); ?>
-        <?php echo $form->textField($model, 'uid', array('size' => 60, 'maxlength' => 64)); ?>
+        <?php echo $form->textField($model, 'uid', array('size' => 60, 'maxlength' => 64, 'readonly' => true)); ?>
         <?php echo $form->error($model, 'uid'); ?>
     </div>
 
