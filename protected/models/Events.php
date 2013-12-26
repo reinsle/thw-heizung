@@ -35,9 +35,7 @@ class Events extends CActiveRecord
             array('uid, category, location', 'length', 'max'=>64),
             array('summary', 'length', 'max'=>255),
             array('dtstamp, dtstart, dtend, description', 'safe'),
-            // The following rule is used by search().
-            // @todo Please remove those attributes that should not be searched.
-            array('uid, dtstamp, dtstart, dtend, category, summary, description, location', 'safe', 'on'=>'search'),
+            array('uid, dtstart, dtend, category, summary, description, location', 'safe', 'on'=>'search'),
         );
     }
 
