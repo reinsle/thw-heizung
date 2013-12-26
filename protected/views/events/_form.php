@@ -2,17 +2,6 @@
 /* @var $this EventsController */
 /* @var $model Events */
 /* @var $form CActiveForm */
-
-Yii::app()->clientScript->registerCoreScript('jquery'); 
-Yii::app()->clientScript->registerCoreScript('jquery.ui');
-
-$cs = Yii::app()->getClientScript();
-$js_file = dirname(__FILE__).DIRECTORY_SEPARATOR.'jquery.simple-dtpicker.js';
-$js_url = Yii::app()->getAssetManager()->publish($js_file);
-$cs->registerScriptFile($js_url);
-$file = dirname(__FILE__).DIRECTORY_SEPARATOR.'jquery.simple-dtpicker.css';
-$url = Yii::app()->getAssetManager()->publish($file);
-$cs->registerCssFile($url);
 ?>
 
 <div class="form">
@@ -42,35 +31,17 @@ $cs->registerCssFile($url);
 		<?php echo $form->error($model,'dtstamp'); ?>
 	</div>
 
-    <script type="text/javascript">
-        $(function(){
-            $('*[name="Events[dtstamp]"]').appendDtpicker();
-        });
-    </script>
-
 	<div class="row">
 		<?php echo $form->labelEx($model,'dtstart'); ?>
 		<?php echo $form->textField($model,'dtstart'); ?>
 		<?php echo $form->error($model,'dtstart'); ?>
 	</div>
 
-    <script type="text/javascript">
-        $(function(){
-            $('*[name="Events[dtstart]"]').appendDtpicker();
-        });
-    </script>
-
 	<div class="row">
 		<?php echo $form->labelEx($model,'dtend'); ?>
 		<?php echo $form->textField($model,'dtend'); ?>
 		<?php echo $form->error($model,'dtend'); ?>
 	</div>
-
-    <script type="text/javascript">
-        $(function(){
-            $('*[name="Events[dtend]"]').appendDtpicker();
-        });
-    </script>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'category'); ?>

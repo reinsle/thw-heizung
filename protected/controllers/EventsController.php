@@ -71,7 +71,7 @@ class EventsController extends Controller
 		{
 			$model->attributes=$_POST['Events'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('view','id'=>$model->uid));
 		}
 
 		$this->render('create',array(
@@ -95,7 +95,7 @@ class EventsController extends Controller
 		{
 			$model->attributes=$_POST['Events'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('view','id'=>$model->uid));
 		}
 
 		$this->render('update',array(

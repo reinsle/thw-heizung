@@ -5,7 +5,6 @@ class m131224_122015_create_events_table extends CDbMigration
 	public function up()
 	{
         $this->createTable('tbl_events', array(
-            'id' => 'pk',
             'uid' => 'varchar(64) NOT NULL',
             'dtstamp' => 'datetime',
             'dtstart' => 'datetime',
@@ -14,6 +13,7 @@ class m131224_122015_create_events_table extends CDbMigration
             'summary' => 'varchar(255)',
             'description' => 'text',
             'location' => 'varchar(64)',
+            'PRIMARY KEY (uid)',
         ));
         $this->createIndex('uid_unique', 'tbl_events', 'uid', true);
 	}
