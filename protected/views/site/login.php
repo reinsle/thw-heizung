@@ -29,6 +29,11 @@ $this->breadcrumbs=array(
 		<?php echo $form->textField($model,'username'); ?>
 		<?php echo $form->error($model,'username'); ?>
 	</div>
+    <script>
+        window.onload = function() {
+            document.getElementById("LoginForm_username").focus();
+        };
+    </script>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'password'); ?>
