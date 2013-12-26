@@ -23,7 +23,6 @@ $this->menu=array(
 	'attributes'=>array(
 		'id',
 		'email',
-		'password',
 		'create_time',
 		'update_time',
         'last_login_time',
