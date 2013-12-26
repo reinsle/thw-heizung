@@ -64,6 +64,8 @@ class EventsController extends Controller
 	{
 		$model=new Events;
 
+        $model->uid = 'man_'.strtotime('now');
+
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
