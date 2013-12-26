@@ -15,7 +15,7 @@ class m131224_122015_create_events_table extends CDbMigration
             'location' => 'varchar(64)',
             'PRIMARY KEY (uid)',
         ));
-        $this->createIndex('uid_unique', 'tbl_events', 'uid', true);
+        $this->createIndex('tbl_events_uid_unique', 'tbl_events', 'uid', true);
 	}
 
 	public function down()
