@@ -7,6 +7,8 @@ $this->pageTitle=Yii::app()->name . ' - Login';
 $this->breadcrumbs=array(
 	'Login',
 );
+
+Yii::app()->clientScript->registerCoreScript('jquery');
 ?>
 
 <h1>Login</h1>
@@ -29,11 +31,6 @@ $this->breadcrumbs=array(
 		<?php echo $form->textField($model,'username'); ?>
 		<?php echo $form->error($model,'username'); ?>
 	</div>
-    <script>
-        window.onload = function() {
-            document.getElementById("LoginForm_username").focus();
-        };
-    </script>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'password'); ?>
@@ -54,5 +51,9 @@ $this->breadcrumbs=array(
 		<?php echo CHtml::submitButton('Login'); ?>
 	</div>
 
-<?php $this->endWidget(); ?>
+    <script>
+        $("#LoginForm_username").focus();
+    </script>
+
+    <?php $this->endWidget(); ?>
 </div><!-- form -->
