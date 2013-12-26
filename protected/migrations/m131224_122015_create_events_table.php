@@ -20,7 +20,7 @@ class m131224_122015_create_events_table extends CDbMigration
 
 	public function down()
 	{
-        $this->dropTable('events');
+        $this->dropTable('tbl_events');
 	}
 
 	/*
