@@ -58,12 +58,12 @@ class Events extends CActiveRecord
         return array(
             'uid' => 'Uid',
             'dtstamp' => 'Dtstamp',
-            'dtstart' => 'Dtstart',
-            'dtend' => 'Dtend',
-            'category' => 'Category',
-            'summary' => 'Summary',
-            'description' => 'Description',
-            'location' => 'Location',
+            'dtstart' => 'Event Begin',
+            'dtend' => 'Event Ende',
+            'category' => 'Karegorie',
+            'summary' => 'Betreff',
+            'description' => 'Beschreibung',
+            'location' => 'Ort',
         );
     }
 
