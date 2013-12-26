@@ -138,6 +138,17 @@ class User extends CActiveRecord
     }
 
     /**
+     * Checks if the given password matches the tored one
+     *
+     * @param $password the password to check
+     * @return bool if password are equal
+     */
+    public function validatePassword($password)
+    {
+        return $this->hashPassword($password) === $this->password;
+    }
+
+    /**
      * Generates the password hash to store in database
      *
      * @param $password the unencrypted password
