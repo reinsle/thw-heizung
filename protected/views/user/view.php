@@ -25,15 +25,15 @@ $this->menu = array(
         'email',
         array(
             'name' => 'create_time',
-            'value' => Yii::app()->dateFormatter->format('H:M:s d.m.y',$model->create_time),
+            'value' => Yii::app()->dateFormatter->format('H:m:s d.M.y',$model->create_time),
         ),
         array(
             'name' => 'update_time',
-            'value' => Yii::app()->dateFormatter->format('H:M:s d.m.y',$model->update_time),
+            'value' => Yii::app()->dateFormatter->format('H:m:s d.M.y',$model->update_time),
         ),
         array(
             'name' => 'last_login_time',
-            'value' => Yii::app()->dateFormatter->format('H:M:s d.m.y',$model->last_login_time),
+            'value' => Yii::app()->dateFormatter->format('H:m:s d.M.y',$model->last_login_time),
         ),
     ),
 )); ?>
