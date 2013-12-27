@@ -7,6 +7,8 @@ $this->pageTitle=Yii::app()->name . ' - Login';
 $this->breadcrumbs=array(
 	'Login',
 );
+
+Yii::app()->clientScript->registerCoreScript('jquery');
 ?>
 
 <h1>Login</h1>
@@ -49,5 +51,9 @@ $this->breadcrumbs=array(
 		<?php echo CHtml::submitButton('Login'); ?>
 	</div>
 
-<?php $this->endWidget(); ?>
+    <script>
+        $("#LoginForm_username").focus();
+    </script>
+
+    <?php $this->endWidget(); ?>
 </div><!-- form -->
