@@ -1,5 +1,5 @@
 <?php
-/* @var $this EventsController */
+/* @var $this EventController */
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs=array(
@@ -7,8 +7,8 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Create Events', 'url'=>array('create')),
-	array('label'=>'Manage Events', 'url'=>array('admin')),
+	array('label'=>'Create Event', 'url'=>array('create')),
+	array('label'=>'Manage Event', 'url'=>array('admin')),
 );
 ?>
 

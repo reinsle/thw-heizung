@@ -47,9 +47,18 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'columns'=>array(
 		'id',
 		'email',
-		'create_time',
-		'update_time',
-        'last_login_time',
+        array(
+            'name'=>'create_time',
+            'value'=>'date("H:i:s d.m.Y", $data->create_time)'
+        ),
+        array(
+            'name'=>'update_time',
+            'value'=>'date("H:i:s d.m.Y", $data->update_time)'
+        ),
+        array(
+            'name'=>'last_login_time',
+            'value'=>'date("H:i:s d.m.Y", $data->last_login_time)'
+        ),
 		array(
 			'class'=>'CButtonColumn',
 		),

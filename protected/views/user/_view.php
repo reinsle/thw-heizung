@@ -14,15 +14,15 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('create_time')); ?>:</b>
-	<?php echo CHtml::encode($data->create_time); ?>
+	<?php echo CHtml::encode(date('H:i:s d.m.Y', $data->create_time)); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('update_time')); ?>:</b>
-	<?php echo CHtml::encode($data->update_time); ?>
+	<?php echo CHtml::encode(date('H:i:s d.m.Y', $data->update_time)); ?>
 	<br />
 
     <b><?php echo CHtml::encode($data->getAttributeLabel('last_login_time')); ?>:</b>
-    <?php echo CHtml::encode($data->last_login_time); ?>
+    <?php echo CHtml::encode(date('H:i:s d.m.Y', $data->last_login_time)); ?>
     <br />
 
 </div>

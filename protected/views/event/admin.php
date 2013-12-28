@@ -1,6 +1,6 @@
 <?php
-/* @var $this EventsController */
-/* @var $model Events */
+/* @var $this EventController */
+/* @var $model Event */
 
 $this->breadcrumbs=array(
 	'Events'=>array('index'),
@@ -8,8 +8,8 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Events', 'url'=>array('index')),
-	array('label'=>'Create Events', 'url'=>array('create')),
+	array('label'=>'List Event', 'url'=>array('index')),
+	array('label'=>'Create Event', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -18,7 +18,7 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$('#events-grid').yiiGridView('update', {
+	$('#event-grid').yiiGridView('update', {
 		data: $(this).serialize()
 	});
 	return false;
@@ -41,15 +41,24 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 </div><!-- search-form -->
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'events-grid',
+	'id'=>'event-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
 		'uid',
-		'dtstart',
-		'dtend',
+        array(
+            'name'=>'start',
+            'value'=>'date("H:i d.m.Y", $data->start)'
+        ),
+        array(
+            'name'=>'ende',
+            'value'=>'date("H:i d.m.Y", $data->ende)'
+        ),
+		'category',
 		'summary',
+		/*
 		'description',
+		*/
 		'location',
 		array(
 			'class'=>'CButtonColumn',
