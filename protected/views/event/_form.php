@@ -77,14 +77,14 @@ function roundTime($increment, $timestamp = 0)
     </script>
 
     <div class="row">
-        <?php echo $form->labelEx($model, 'end'); ?>
-        <?php $model->end = date("H:i d.m.Y", roundTime('30 minutes', $model->end));
-        echo $form->textField($model, 'end', array('readonly' => true)); ?>
-        <?php echo $form->error($model, 'end'); ?>
+        <?php echo $form->labelEx($model, 'ende'); ?>
+        <?php $model->ende = date("H:i d.m.Y", roundTime('30 minutes', $model->ende));
+        echo $form->textField($model, 'ende', array('readonly' => true)); ?>
+        <?php echo $form->error($model, 'ende'); ?>
     </div>
 
     <script>
-        $('#Event_end').appendDtpicker({
+        $('#Event_ende').appendDtpicker({
             'inline': true,
             'locale': 'de',
             'dateFormat': 'hh:mm DD.MM.YYYY',

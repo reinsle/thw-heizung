@@ -27,8 +27,8 @@ $this->menu=array(
             'value' => Yii::app()->dateFormatter->format('HH:mm d.M.y',$model->start),
         ),
         array(
-            'name' => 'end',
-            'value' => Yii::app()->dateFormatter->format('HH:mm d.M.y',$model->end),
+            'name' => 'ende',
+            'value' => Yii::app()->dateFormatter->format('HH:mm d.M.y',$model->ende),
         ),
 		'category',
 		'summary',

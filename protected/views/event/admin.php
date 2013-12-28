@@ -51,8 +51,8 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
             'value'=>'date("H:i d.m.Y", $data->start)'
         ),
         array(
-            'name'=>'end',
-            'value'=>'date("H:i d.m.Y", $data->end)'
+            'name'=>'ende',
+            'value'=>'date("H:i d.m.Y", $data->ende)'
         ),
 		'category',
 		'summary',

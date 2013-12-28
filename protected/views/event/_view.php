@@ -13,8 +13,8 @@
 	<?php echo CHtml::encode(date('H:i d.m.Y', $data->start)); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('end')); ?>:</b>
-	<?php echo CHtml::encode(date('H:i d.m.Y', $data->end)); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('ende')); ?>:</b>
+	<?php echo CHtml::encode(date('H:i d.m.Y', $data->ende)); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('category')); ?>:</b>

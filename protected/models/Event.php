@@ -6,7 +6,7 @@
  * The followings are the available columns in table 'tbl_event':
  * @property string $uid
  * @property integer $start
- * @property integer $end
+ * @property integer $ende
  * @property string $category
  * @property string $summary
  * @property string $description
@@ -37,7 +37,7 @@ class Event extends CActiveRecord
             array('uid, category, location', 'length', 'max' => 64),
             array('summary', 'length', 'max' => 255),
             array('description', 'safe'),
-            array('uid, start, end, category, summary, description, location', 'safe', 'on' => 'search'),
+            array('uid, start, ende, category, summary, description, location', 'safe', 'on' => 'search'),
         );
     }
 
@@ -59,7 +59,7 @@ class Event extends CActiveRecord
         return array(
             'uid' => 'Uid',
             'start' => 'Start',
-            'end' => 'End',
+            'ende' => 'Ende',
             'category' => 'Category',
             'summary' => 'Summary',
             'description' => 'Description',
@@ -89,7 +89,7 @@ class Event extends CActiveRecord
 
         $criteria->compare('uid', $this->uid, true);
         $criteria->compare('start', $this->start);
-        $criteria->compare('end', $this->end);
+        $criteria->compare('ende', $this->ende);
         $criteria->compare('category', $this->category, true);
         $criteria->compare('summary', $this->summary, true);
         $criteria->compare('description', $this->description, true);
@@ -130,9 +130,9 @@ class Event extends CActiveRecord
         {
             $this->start = strtotime($attributes['start']);
         }
-        if (strpos($attributes['end'], ':') != false)
+        if (strpos($attributes['ende'], ':') != false)
         {
-            $this->end = strtotime($attributes['end']);
+            $this->ende = strtotime($attributes['ende']);
         }
     }
 
