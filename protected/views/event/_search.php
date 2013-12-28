@@ -1,6 +1,6 @@
 <?php
-/* @var $this EventsController */
-/* @var $model Events */
+/* @var $this EventController */
+/* @var $model Event */
 /* @var $form CActiveForm */
 ?>
 
@@ -17,18 +17,13 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'dtstamp'); ?>
-		<?php echo $form->textField($model,'dtstamp'); ?>
+		<?php echo $form->label($model,'start'); ?>
+		<?php echo $form->textField($model,'start'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'dtstart'); ?>
-		<?php echo $form->textField($model,'dtstart'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'dtend'); ?>
-		<?php echo $form->textField($model,'dtend'); ?>
+		<?php echo $form->label($model,'ende'); ?>
+		<?php echo $form->textField($model,'ende'); ?>
 	</div>
 
 	<div class="row">

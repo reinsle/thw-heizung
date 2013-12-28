@@ -1,6 +1,6 @@
 <?php
-/* @var $this EventsController */
-/* @var $model Events */
+/* @var $this EventController */
+/* @var $model Event */
 /* @var $form CActiveForm */
 
 Yii::app()->clientScript->registerCoreScript('jquery');
@@ -13,12 +13,36 @@ $cs->registerScriptFile($js_url);
 $file = dirname(__FILE__) . DIRECTORY_SEPARATOR . 'jquery.simple-dtpicker.css';
 $url = Yii::app()->getAssetManager()->publish($file);
 $cs->registerCssFile($url);
+
+function roundTime($increment, $timestamp = 0)
+{
+    if (!$timestamp) $timestamp = time();
+
+    $increment = strtotime($increment, 1) - 1;
+    $this_hour = strtotime(date("Y-m-d H:", strtotime("-1 Hour", $timestamp)) . "00:00");
+    $next_hour = strtotime(date("Y-m-d H:", strtotime("+1 Hour", $timestamp)) . "00:00");
+
+    $increments = array();
+    $differences = array();
+
+    for ($i = $this_hour; $i <= $next_hour; $i += $increment) {
+        $increments [] = $i;
+        $differences [] = ($timestamp > $i) ? $timestamp - $i : $i - $timestamp;
+    }
+
+    arsort($differences);
+
+    $key = array_pop(array_keys($differences));
+
+    return $increments[$key];
+}
+
 ?>
 
 <div class="form">
 
     <?php $form = $this->beginWidget('CActiveForm', array(
-        'id' => 'events-form',
+        'id' => 'event-form',
         // Please note: When you enable ajax validation, make sure the corresponding
         // controller action is handling ajax validation correctly.
         // There is a call to performAjaxValidation() commented in generated controller code.
@@ -37,39 +61,35 @@ $cs->registerCssFile($url);
     </div>
 
     <div class="row">
-        <?php echo $form->labelEx($model, 'dtstamp'); ?>
-        <?php echo $form->textField($model, 'dtstamp'); ?>
-        <?php echo $form->error($model, 'dtstamp'); ?>
+        <?php echo $form->labelEx($model, 'start'); ?>
+        <?php $model->start = date("H:i d.m.Y", roundTime('30 minutes', $model->start));
+        echo $form->textField($model, 'start', array('readonly' => true)); ?>
+        <?php echo $form->error($model, 'start'); ?>
     </div>
 
-    <script type="text/javascript">
-        $(function () {
-            $('#Events_dtstamp').appendDtpicker();
-        });
+    <script>
+        $('#Event_start').appendDtpicker({
+            'inline': true,
+            'locale': 'de',
+            'dateFormat': 'hh:mm DD.MM.YYYY',
+            'minuteInterval': 30,
+            'firstDayOfWeek': 1});
     </script>
 
     <div class="row">
-        <?php echo $form->labelEx($model, 'dtstart'); ?>
-        <?php echo $form->textField($model, 'dtstart'); ?>
-        <?php echo $form->error($model, 'dtstart'); ?>
+        <?php echo $form->labelEx($model, 'ende'); ?>
+        <?php $model->ende = date("H:i d.m.Y", roundTime('30 minutes', $model->ende));
+        echo $form->textField($model, 'ende', array('readonly' => true)); ?>
+        <?php echo $form->error($model, 'ende'); ?>
     </div>
 
-    <script type="text/javascript">
-        $(function () {
-            $('#Events_dtstart').appendDtpicker();
-        });
-    </script>
-
-    <div class="row">
-        <?php echo $form->labelEx($model, 'dtend'); ?>
-        <?php echo $form->textField($model, 'dtend'); ?>
-        <?php echo $form->error($model, 'dtend'); ?>
-    </div>
-
-    <script type="text/javascript">
-        $(function () {
-            $('#Events_dtend').appendDtpicker();
-        });
+    <script>
+        $('#Event_ende').appendDtpicker({
+            'inline': true,
+            'locale': 'de',
+            'dateFormat': 'hh:mm DD.MM.YYYY',
+            'minuteInterval': 30,
+            'firstDayOfWeek': 1});
     </script>
 
     <div class="row">

@@ -1,6 +1,6 @@
 <?php
-/* @var $this EventsController */
-/* @var $data Events */
+/* @var $this EventController */
+/* @var $data Event */
 ?>
 
 <div class="view">
@@ -9,16 +9,12 @@
 	<?php echo CHtml::link(CHtml::encode($data->uid), array('view', 'id'=>$data->uid)); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('dtstamp')); ?>:</b>
-	<?php echo CHtml::encode($data->dtstamp); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('start')); ?>:</b>
+	<?php echo CHtml::encode(date('H:i d.m.Y', $data->start)); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('dtstart')); ?>:</b>
-	<?php echo CHtml::encode($data->dtstart); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('dtend')); ?>:</b>
-	<?php echo CHtml::encode($data->dtend); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('ende')); ?>:</b>
+	<?php echo CHtml::encode(date('H:i d.m.Y', $data->ende)); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('category')); ?>:</b>
