@@ -125,13 +125,14 @@ class Event extends CActiveRecord
     protected function afterValidate()
     {
         parent::afterValidate();
-        if (strpos($this->start, ':') != false)
+        $attributes=$_POST['Event'];
+        if (strpos($attributes['start'], ':') != false)
         {
-            $this->start = strtotime($this->start);
+            $this->start = strtotime($attributes['start']);
         }
-        if (strpos($this->end, ':') != false)
+        if (strpos($attributes['end'], ':') != false)
         {
-            $this->end = strtotime($this->end);
+            $this->end = strtotime($attributes['end']);
         }
     }
 
