@@ -6,8 +6,8 @@ class m131228_165535_create_event_table extends CDbMigration
     {
         $this->createTable('tbl_event', array(
             'uid' => 'varchar(64) NOT NULL',
-            'start' => 'int',
-            'ende' => 'int',
+            'start' => 'int NOT NULL',
+            'ende' => 'int NOT NULL',
             'category' => 'varchar(64)',
             'summary' => 'varchar(255)',
             'description' => 'text',
