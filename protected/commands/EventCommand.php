@@ -55,7 +55,7 @@ EOD;
                 if ($dtend > $weeks) {
                     $criteria = new CDbCriteria;
                     $criteria->condition = "uid = '".trim($newEvent['UID'])."'";
-                    $models = Events::model()->findAll($criteria);
+                    $models = Event::model()->findAll($criteria);
                     if (count($models) > 0) {
                         // Update Date to Events model
                         $event = $models[0];
@@ -63,7 +63,7 @@ EOD;
                         $update++;
                     } else {
                         // Create new Events model from data
-                        $event = new Events();
+                        $event = new Event();
                         $event->uid = trim($newEvent['UID']);
                         $this->parseData($newEvent, $event);
                         $insert++;
@@ -80,7 +80,7 @@ EOD;
     public function actionCleanUp()
     {
         date_default_timezone_set('Europe/Berlin');
-        $events = Events::model()->findAll('DTEND < ?', array(date(DateTime::RFC1123, strtotime('-2 weeks'))));
+        $events = Event::model()->findAll('ende < ?', array(strtotime('-2 weeks')));
         $count = count($events);
         foreach ($events as $event) {
             $event->delete();
@@ -126,15 +126,19 @@ EOD;
     {
         if (array_key_exists('DTSTAMP', $newEvent)) {
             $ts = strtotime($newEvent['DTSTAMP']);
-            $event->dtstamp = date(DateTime::RFC1123, $ts);
+            $event->create_time = $ts;
+            $event->update_time = $ts;
         }
         if (array_key_exists('DTSTART', $newEvent)) {
-            $ts = strtotime($newEvent['DTSTART']);
-            $event->dtstart = date(DateTime::RFC1123, $ts);
+            $event->start = strtotime($newEvent['DTSTART']);
         }
         if (array_key_exists('DTEND', $newEvent)) {
-            $ts = strtotime($newEvent['DTEND']);
-            $event->dtend = date(DateTime::RFC1123, $ts);
+            $event->ende = strtotime($newEvent['DTEND']);
+        }
+        if (array_key_exists('CATEGORIES', $newEvent)) {
+            if ($event->category != trim($newEvent['CATEGORIES'])) {
+                $event->category = trim($newEvent['CATEGORIES']);
+            }
         }
         if (array_key_exists('SUMMARY', $newEvent)) {
             if ($event->summary != trim($newEvent['SUMMARY'])) {
