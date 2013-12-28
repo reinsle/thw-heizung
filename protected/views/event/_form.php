@@ -62,13 +62,14 @@ function roundTime($increment, $timestamp = 0)
 
     <div class="row">
         <?php echo $form->labelEx($model, 'start'); ?>
-        <?php $model->start = date("H:i d.m.Y", roundTime('30 minutes' , $model->start));
-            echo $form->textField($model,'start', array('readonly' => true)); ?>
+        <?php $model->start = date("H:i d.m.Y", roundTime('30 minutes', $model->start));
+        echo $form->textField($model, 'start', array('readonly' => true)); ?>
         <?php echo $form->error($model, 'start'); ?>
     </div>
 
     <script>
         $('#Event_start').appendDtpicker({
+            'inline': true,
             'locale': 'de',
             'dateFormat': 'hh:mm DD.MM.YYYY',
             'minuteInterval': 30,
@@ -77,13 +78,14 @@ function roundTime($increment, $timestamp = 0)
 
     <div class="row">
         <?php echo $form->labelEx($model, 'end'); ?>
-        <?php $model->end = date("H:i d.m.Y", roundTime('30 minutes' , $model->end));
-        echo $form->textField($model,'end', array('readonly' => true)); ?>
+        <?php $model->end = date("H:i d.m.Y", roundTime('30 minutes', $model->end));
+        echo $form->textField($model, 'end', array('readonly' => true)); ?>
         <?php echo $form->error($model, 'end'); ?>
     </div>
 
     <script>
         $('#Event_end').appendDtpicker({
+            'inline': true,
             'locale': 'de',
             'dateFormat': 'hh:mm DD.MM.YYYY',
             'minuteInterval': 30,
