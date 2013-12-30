@@ -2,4 +2,5 @@ assets/*
 !assets/.keep
 protected/runtime/application.log
 protected/runtime/state.bin
+protected/data/testdrive.db
 .idea
