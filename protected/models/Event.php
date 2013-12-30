@@ -96,6 +96,7 @@ class Event extends CActiveRecord
         $criteria->compare('location', $this->location, true);
         $criteria->compare('create_time', $this->create_time, true);
         $criteria->compare('update_time', $this->update_time, true);
+        $criteria->order = 'start ASC';
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,

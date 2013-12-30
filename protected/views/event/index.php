@@ -2,19 +2,29 @@
 /* @var $this EventController */
 /* @var $dataProvider CActiveDataProvider */
 
-$this->breadcrumbs=array(
-	'Events',
+$this->breadcrumbs = array(
+    'Events',
 );
 
-$this->menu=array(
-	array('label'=>'Create Event', 'url'=>array('create')),
-	array('label'=>'Manage Event', 'url'=>array('admin')),
+$this->menu = array(
+    array('label' => 'Create Event', 'url' => array('create')),
+    array('label' => 'Manage Event', 'url' => array('admin')),
 );
 ?>
 
-<h1>Events</h1>
+    <h1>Events</h1>
 
-<?php $this->widget('zii.widgets.CListView', array(
-	'dataProvider'=>$dataProvider,
-	'itemView'=>'_view',
-)); ?>
+<?php
+$this->widget('ext.EFullCalendar.EFullCalendar', array(
+    'themeCssFile' => 'cupertino/jquery-ui.min.css',
+    'lang'=>'de',
+    'options' => array(
+        'header' => array(
+            'left' => 'prev,next',
+            'center' => 'title',
+            'right' => 'today'
+        ),
+        'events' => '/heizung/index.php?r=event/calendarEvents',
+    )
+));
+?>
