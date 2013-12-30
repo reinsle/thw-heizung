@@ -12,11 +12,19 @@ $this->menu = array(
 );
 ?>
 
-<h1>Events</h1>
+    <h1>Events</h1>
 
 <?php
-$dataProvider->sort->defaultOrder = 'start ASC';
-$this->widget('zii.widgets.CListView', array(
-    'dataProvider' => $dataProvider,
-    'itemView' => '_view',
-)); ?>
+$this->widget('ext.EFullCalendar.EFullCalendar', array(
+    'themeCssFile' => 'cupertino/jquery-ui.min.css',
+    'lang'=>'de',
+    'options' => array(
+        'header' => array(
+            'left' => 'prev,next',
+            'center' => 'title',
+            'right' => 'today'
+        ),
+        'events' => '/heizung/index.php?r=event/calendarEvents',
+    )
+));
+?>
