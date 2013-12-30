@@ -55,7 +55,7 @@
 
     <div id="footer">
         Copyright &copy; <?php echo date('Y'); ?> by einsle.de.<br/>
-        (v0.4) All Rights Reserved.<br/>
+        (v0.5) All Rights Reserved.<br/>
         <?php echo Yii::powered(); ?>
     </div>
     <!-- footer -->
