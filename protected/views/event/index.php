@@ -24,21 +24,7 @@ $this->widget('ext.EFullCalendar.EFullCalendar', array(
             'center' => 'title',
             'right' => 'today'
         ),
-        'events' => array(
-            $items[] = array(
-                'title' => 'Meeting',
-                'start' => '2013-12-29',
-                'color' => '#CC0000',
-                'allDay' => true,
-                'url' => 'http://anyurl.com'
-            ),
-            $items[] = array(
-                'title' => 'Meeting reminder',
-                'start' => '2013-12-30',
-                'end' => '2013-12-31',
-                'color' => 'blue',
-            ),
-        ),
+        'events' => '/heizung/index.php?r=event/calendarEvents',
     )
 ));
 ?>
