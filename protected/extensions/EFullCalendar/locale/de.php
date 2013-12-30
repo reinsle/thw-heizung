@@ -8,16 +8,16 @@ return array(
     'monthNamesShort'=>array(
         'Jan','Feb','Mär','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'
     ),
-    'firstDay'=>0,
+    'firstDay'=>1,
     'dayNames'=>array(
-        'Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag','Sonntag'
+        'Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'
     ),
     'dayNamesShort'=>array(
-        'Mon','Die','Mit','Don','Fre','Sam','Son'
+        'Son','Mon','Die','Mit','Don','Fre','Sam'
     ),
     'buttonText'=>array(
         'today'=>'Heute',
-        'month'=>'monat',
+        'month'=>'Monat',
         'week'=>'Woche',
         'day'=>'Tag'
     ),
