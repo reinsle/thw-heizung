@@ -14,19 +14,20 @@ return array(
     ),
     // application components
     'components' => array(
-        /*
           'db'=>array(
-          'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
+          'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/heizung.db',
           ),
-         */
         // uncomment the following to use a MySQL database
+        /*
         'db' => array(
             'connectionString' => 'pgsql:host=10.4.3.30;dbname=heizung',
             'emulatePrepare' => true,
             'username' => 'heizung',
             'password' => 'ni.xd.ol',
             'charset' => 'utf8',
-        ), 'log' => array(
+        ),
+         */
+         'log' => array(
             'class' => 'CLogRouter',
             'routes' => array(
                 array(
