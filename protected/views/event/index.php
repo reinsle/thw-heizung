@@ -24,7 +24,7 @@ $this->widget('ext.EFullCalendar.EFullCalendar', array(
             'center' => 'title',
             'right' => 'today'
         ),
-        'events' => '/heizung/index.php?r=event/calendarEvents',
+        'events' => '/index.php?r=event/calendarEvents',
     )
 ));
 ?>
