@@ -5,3 +5,5 @@ protected/runtime/state.bin
 protected/data/testdrive.db
 protected/data/heizung.db
 .idea
+.ssh
+.Xauthority

@@ -161,7 +161,7 @@ class EventController extends Controller
                 'start' => $event->start,
                 'end' => $event->ende,
                 'color' => 'blue',
-                'url' => '/heizung/index.php?r=event/view&id=' . $event->uid,
+                'url' => '/index.php?r=event/view&id=' . $event->uid,
             );
         }
         echo CJSON::encode($items);
