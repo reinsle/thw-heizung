@@ -23,7 +23,11 @@ class WireCommand extends CConsoleCommand
      */
     public function actionIndex()
     {
-
+        $data = History::model()->findAllBySql("SELECT * FROM tbl_history WHERE tst >= NOW() - INTERVAL '30 minutes'");
+        if (count($data) == 0) {
+            echo "ZZZ";
+        }
+        echo "...";
     }
 
 }
