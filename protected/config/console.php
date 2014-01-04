@@ -8,15 +8,15 @@ return array(
     // preloading 'log' component
     'preload' => array('log'),
     // autoloading model and component classes
-    'import'=>array(
+    'import' => array(
         'application.models.*',
         'application.components.*',
     ),
     // application components
     'components' => array(
-          'db'=>array(
-          'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/heizung.db',
-          ),
+        'db' => array(
+            'connectionString' => 'sqlite:' . dirname(__FILE__) . '/../data/heizung.db',
+        ),
         // uncomment the following to use a MySQL database
         /*
         'db' => array(
@@ -27,7 +27,7 @@ return array(
             'charset' => 'utf8',
         ),
          */
-         'log' => array(
+        'log' => array(
             'class' => 'CLogRouter',
             'routes' => array(
                 array(
