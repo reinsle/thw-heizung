@@ -24,7 +24,7 @@ $this->widget('ext.EFullCalendar.EFullCalendar', array(
             'center' => 'title',
             'right' => 'today'
         ),
-        'events' => '/index.php?r=event/calendarEvents',
+        'events' => CController::createUrl("event/calendarEvents"),
     )
 ));
 ?>
