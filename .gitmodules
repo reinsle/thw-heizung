@@ -1,3 +1,6 @@
 [submodule "protected/extensions/bootstrap"]
 	path = protected/extensions/bootstrap
 	url = git@github.com:Crisu83/yiistrap.git
+[submodule "protected/extensions/EFullCalendar"]
+	path = protected/extensions/EFullCalendar
+	url = git@github.com:mikemix/efullcalendar.git
