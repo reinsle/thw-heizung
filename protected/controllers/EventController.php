@@ -155,13 +155,13 @@ class EventController extends Controller
     public function actionCalendarEvents()
     {
         $events = Event::model()->findAll();
-        foreach($events as $event) {
+        foreach ($events as $event) {
             $items[] = array(
                 'title' => $event->summary,
                 'start' => $event->start,
                 'end' => $event->ende,
                 'color' => 'blue',
-                'url' => CController::createUrl('event/view',array('id'=>$event->uid)),
+                'url' => CController::createUrl('event/view', array('id' => $event->uid)),
             );
         }
         echo CJSON::encode($items);

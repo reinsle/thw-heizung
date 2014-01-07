@@ -54,7 +54,7 @@ EOD;
                 $weeks = strtotime('-2 weeks');
                 if ($dtend > $weeks) {
                     $criteria = new CDbCriteria;
-                    $criteria->condition = "uid = '".trim($newEvent['UID'])."'";
+                    $criteria->condition = "uid = '" . trim($newEvent['UID']) . "'";
                     $models = Event::model()->findAll($criteria);
                     if (count($models) > 0) {
                         // Update Date to Events model
