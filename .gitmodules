@@ -1,0 +1,3 @@
+[submodule "protected/extensions/bootstrap"]
+	path = protected/extensions/bootstrap
+	url = git@github.com:Crisu83/yiistrap.git
