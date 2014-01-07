@@ -24,17 +24,7 @@ class m131226_162226_create_user_table extends CDbMigration
 
     public function down()
     {
+        $this->dropIndex('tbl_user_email_unique', 'tbl_user');
         $this->dropTable('tbl_user');
     }
-
-    /*
-    // Use safeUp/safeDown to do migration with transaction
-    public function safeUp()
-    {
-    }
-
-    public function safeDown()
-    {
-    }
-    */
 }

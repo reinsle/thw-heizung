@@ -1,37 +1,23 @@
 <?php
 
 /**
- * This is the model class for table "tbl_user".
+ * This is the model class for table "tbl_history".
  *
- * The followings are the available columns in table 'tbl_user':
+ * The followings are the available columns in table 'tbl_history':
  * @property integer $id
- * @property string $email
- * @property string $password
+ * @property string $name
+ * @property string $tst
  * @property integer $create_time
  * @property integer $update_time
- * @property integer $last_login_time
  */
-class User extends CActiveRecord
+class History extends CActiveRecord
 {
-    public $password_repeat;
-
-    /**
-     * Returns the static model of the specified AR class.
-     * Please note that you should have this exact method in all your CActiveRecord descendants!
-     * @param string $className active record class name.
-     * @return User the static model class
-     */
-    public static function model($className = __CLASS__)
-    {
-        return parent::model($className);
-    }
-
     /**
      * @return string the associated database table name
      */
     public function tableName()
     {
-        return 'tbl_user';
+        return 'tbl_history';
     }
 
     /**
@@ -42,12 +28,13 @@ class User extends CActiveRecord
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('email, password, password_repeat', 'required'),
-            array('email, password', 'length', 'max' => 128),
-            array('email', 'email'),
-            array('email', 'unique'),
-            array('password', 'compare'),
-            array('id, email, password, password_repeat', 'safe', 'on' => 'search'),
+            array('name, create_time, update_time', 'required'),
+            array('create_time, update_time', 'numerical', 'integerOnly' => true),
+            array('name', 'length', 'max' => 255),
+            array('tst', 'safe'),
+            // The following rule is used by search().
+            // @todo Please remove those attributes that should not be searched.
+            array('id, name, tst, create_time, update_time', 'safe', 'on' => 'search'),
         );
     }
 
@@ -68,12 +55,10 @@ class User extends CActiveRecord
     {
         return array(
             'id' => 'ID',
-            'email' => 'Email',
-            'password' => 'Passwort',
-            'password_repeat' => 'Passwort (wdh.)',
+            'name' => 'Name',
+            'tst' => 'Tst',
             'create_time' => 'Create Time',
             'update_time' => 'Update Time',
-            'last_login_time' => 'Letzter Login',
         );
     }
 
@@ -96,11 +81,10 @@ class User extends CActiveRecord
         $criteria = new CDbCriteria;
 
         $criteria->compare('id', $this->id);
-        $criteria->compare('email', $this->email, true);
-        $criteria->compare('password', $this->password, true);
-        $criteria->compare('create_time', $this->create_time, true);
-        $criteria->compare('update_time', $this->update_time, true);
-        $criteria->compare('last_login_time', $this->last_login_time, true);
+        $criteria->compare('name', $this->name, true);
+        $criteria->compare('tst', $this->tst, true);
+        $criteria->compare('create_time', $this->create_time);
+        $criteria->compare('update_time', $this->update_time);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
@@ -125,35 +109,13 @@ class User extends CActiveRecord
     }
 
     /**
-     * apply a hash to the password before store in database
+     * Returns the static model of the specified AR class.
+     * Please note that you should have this exact method in all your CActiveRecord descendants!
+     * @param string $className active record class name.
+     * @return History the static model class
      */
-    protected function afterValidate()
+    public static function model($className = __CLASS__)
     {
-        parent::afterValidate();
-        if (!$this->hasErrors()) {
-            $this->password = $this->hashPassword($this->password);
-        }
-    }
-
-    /**
-     * Checks if the given password matches the tored one
-     *
-     * @param $password the password to check
-     * @return bool if password are equal
-     */
-    public function validatePassword($password)
-    {
-        return $this->hashPassword($password) === $this->password;
-    }
-
-    /**
-     * Generates the password hash to store in database
-     *
-     * @param $password the unencrypted password
-     * @return string the encrypted password
-     */
-    public function hashPassword($password)
-    {
-        return sha1($password);
+        return parent::model($className);
     }
 }

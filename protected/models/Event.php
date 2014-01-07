@@ -32,7 +32,7 @@ class Event extends CActiveRecord
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('uid, start, ende, create_time, update_time', 'required'),
+            array('uid, start, ende', 'required'),
             array('uid', 'unique'),
             array('uid, category, location', 'length', 'max' => 64),
             array('summary', 'length', 'max' => 255),
@@ -126,15 +126,12 @@ class Event extends CActiveRecord
     protected function afterValidate()
     {
         parent::afterValidate();
-        if ($_POST != null && $_POST['Event'] != null)
-        {
-            $attributes=$_POST['Event'];
-            if (strpos($attributes['start'], ':') != false)
-            {
+        if ($_POST != null && $_POST['Event'] != null) {
+            $attributes = $_POST['Event'];
+            if (strpos($attributes['start'], ':') != false) {
                 $this->start = strtotime($attributes['start']);
             }
-            if (strpos($attributes['ende'], ':') != false)
-            {
+            if (strpos($attributes['ende'], ':') != false) {
                 $this->ende = strtotime($attributes['ende']);
             }
         }

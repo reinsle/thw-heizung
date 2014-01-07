@@ -1,6 +1,6 @@
 <?php
 
-class EventController extends Controller
+class HistoryController extends Controller
 {
     /**
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -28,7 +28,7 @@ class EventController extends Controller
     {
         return array(
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('index', 'view', 'create', 'update', 'admin', 'delete', 'calendarEvents'),
+                'actions' => array('index', 'view', 'create', 'update', 'admin', 'delete'),
                 'users' => array('@'),
             ),
             array('deny', // deny all users
@@ -54,16 +54,15 @@ class EventController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Event;
-        $model->uid = 'man_' . strtotime('now');
+        $model = new History;
 
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
-        if (isset($_POST['Event'])) {
-            $model->attributes = $_POST['Event'];
+        if (isset($_POST['History'])) {
+            $model->attributes = $_POST['History'];
             if ($model->save())
-                $this->redirect(array('view', 'id' => $model->uid));
+                $this->redirect(array('view', 'id' => $model->id));
         }
 
         $this->render('create', array(
@@ -83,10 +82,10 @@ class EventController extends Controller
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
-        if (isset($_POST['Event'])) {
-            $model->attributes = $_POST['Event'];
+        if (isset($_POST['History'])) {
+            $model->attributes = $_POST['History'];
             if ($model->save())
-                $this->redirect(array('view', 'id' => $model->uid));
+                $this->redirect(array('view', 'id' => $model->id));
         }
 
         $this->render('update', array(
@@ -113,7 +112,7 @@ class EventController extends Controller
      */
     public function actionIndex()
     {
-        $dataProvider = new CActiveDataProvider('Event');
+        $dataProvider = new CActiveDataProvider('History');
         $this->render('index', array(
             'dataProvider' => $dataProvider,
         ));
@@ -124,10 +123,10 @@ class EventController extends Controller
      */
     public function actionAdmin()
     {
-        $model = new Event('search');
+        $model = new History('search');
         $model->unsetAttributes(); // clear any default values
-        if (isset($_GET['Event']))
-            $model->attributes = $_GET['Event'];
+        if (isset($_GET['History']))
+            $model->attributes = $_GET['History'];
 
         $this->render('admin', array(
             'model' => $model,
@@ -138,43 +137,24 @@ class EventController extends Controller
      * Returns the data model based on the primary key given in the GET variable.
      * If the data model is not found, an HTTP exception will be raised.
      * @param integer $id the ID of the model to be loaded
-     * @return Event the loaded model
+     * @return History the loaded model
      * @throws CHttpException
      */
     public function loadModel($id)
     {
-        $model = Event::model()->findByPk($id);
+        $model = History::model()->findByPk($id);
         if ($model === null)
             throw new CHttpException(404, 'The requested page does not exist.');
         return $model;
     }
 
     /**
-     * Create the public calendar events
-     */
-    public function actionCalendarEvents()
-    {
-        $events = Event::model()->findAll();
-        foreach ($events as $event) {
-            $items[] = array(
-                'title' => $event->summary,
-                'start' => $event->start,
-                'end' => $event->ende,
-                'color' => 'blue',
-                'url' => CController::createUrl('event/view', array('id' => $event->uid)),
-            );
-        }
-        echo CJSON::encode($items);
-        Yii::app()->end();
-    }
-
-    /**
      * Performs the AJAX validation.
-     * @param Event $model the model to be validated
+     * @param History $model the model to be validated
      */
     protected function performAjaxValidation($model)
     {
-        if (isset($_POST['ajax']) && $_POST['ajax'] === 'event-form') {
+        if (isset($_POST['ajax']) && $_POST['ajax'] === 'history-form') {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }

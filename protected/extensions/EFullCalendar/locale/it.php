@@ -1,7 +1,7 @@
 <?php
 
 return array(
-    'monthNames'=>array(
+    'monthNames' => array(
         'gennaio',
         'febbraio',
         'marzo',
@@ -15,7 +15,7 @@ return array(
         'novembre',
         'dicembre'
     ),
-    'monthNamesShort'=>array(
+    'monthNamesShort' => array(
         'gen',
         'feb',
         'mar',
@@ -29,8 +29,8 @@ return array(
         'nov',
         'dic'
     ),
-    'firstDay'=>1,
-    'dayNames'=>array(
+    'firstDay' => 1,
+    'dayNames' => array(
         'domenica',
         'lunedì',
         'martedì',
@@ -39,7 +39,7 @@ return array(
         'venerdì',
         'sabato'
     ),
-    'dayNamesShort'=>array(
+    'dayNamesShort' => array(
         'dom',
         'lun',
         'mar',
@@ -48,11 +48,11 @@ return array(
         'ven',
         'sav'
     ),
-    'buttonText'=>array(
-        'today'=>'Oggi',
-        'month'=>'mese',
-        'week'=>'settimana',
-        'day'=>'giorno'
+    'buttonText' => array(
+        'today' => 'Oggi',
+        'month' => 'mese',
+        'week' => 'settimana',
+        'day' => 'giorno'
     ),
 );
 

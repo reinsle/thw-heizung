@@ -1,6 +1,6 @@
 <?php
-/* @var $this UserController */
-/* @var $model User */
+/* @var $this HistoryController */
+/* @var $model History */
 /* @var $form CActiveForm */
 ?>
 
@@ -17,8 +17,13 @@
     </div>
 
     <div class="row">
-        <?php echo $form->label($model, 'email'); ?>
-        <?php echo $form->textField($model, 'email', array('size' => 60, 'maxlength' => 128)); ?>
+        <?php echo $form->label($model, 'name'); ?>
+        <?php echo $form->textField($model, 'name', array('size' => 60, 'maxlength' => 255)); ?>
+    </div>
+
+    <div class="row">
+        <?php echo $form->label($model, 'tst'); ?>
+        <?php echo $form->textField($model, 'tst'); ?>
     </div>
 
     <div class="row">

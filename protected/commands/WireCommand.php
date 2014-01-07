@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: reinsle
@@ -23,7 +24,12 @@ class WireCommand extends CConsoleCommand
      */
     public function actionIndex()
     {
-
+        // select history for elements < 30 min old
+        $data = History::model()->findAllBySql("SELECT * FROM tbl_history WHERE tst >= NOW() - INTERVAL '30 minutes'");
+        if (count($data) == 0) {
+            // select event where start >= now() - 5 h and end < now()
+            $events = Event::model()->findAllBySql("SELECT * FROM tbl_event WHERE now() BETWEEN to_timestamp(start) - INTERVAL '300 minutes' AND to_timestamp(ende)");
+            echo count($events);
+        }
     }
-
 }

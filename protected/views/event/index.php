@@ -12,19 +12,19 @@ $this->menu = array(
 );
 ?>
 
-    <h1>Events</h1>
+<h1>Events</h1>
 
 <?php
 $this->widget('ext.EFullCalendar.EFullCalendar', array(
     'themeCssFile' => 'cupertino/jquery-ui.min.css',
-    'lang'=>'de',
+    'lang' => 'de',
     'options' => array(
         'header' => array(
             'left' => 'prev,next',
             'center' => 'title',
             'right' => 'today'
         ),
-        'events' => '/index.php?r=event/calendarEvents',
+        'events' => CController::createUrl("event/calendarEvents"),
     )
 ));
 ?>

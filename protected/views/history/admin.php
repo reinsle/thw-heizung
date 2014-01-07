@@ -1,15 +1,15 @@
 <?php
-/* @var $this UserController */
-/* @var $model User */
+/* @var $this HistoryController */
+/* @var $model History */
 
 $this->breadcrumbs = array(
-    'Users' => array('index'),
+    'Histories' => array('index'),
     'Manage',
 );
 
 $this->menu = array(
-    array('label' => 'List User', 'url' => array('index')),
-    array('label' => 'Create User', 'url' => array('create')),
+    array('label' => 'List History', 'url' => array('index')),
+    array('label' => 'Create History', 'url' => array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -18,7 +18,7 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$('#user-grid').yiiGridView('update', {
+	$('#history-grid').yiiGridView('update', {
 		data: $(this).serialize()
 	});
 	return false;
@@ -26,7 +26,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage Users</h1>
+<h1>Manage Histories</h1>
 
 <p>
     You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>
@@ -42,24 +42,15 @@ $('.search-form form').submit(function(){
 </div><!-- search-form -->
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
-    'id' => 'user-grid',
+    'id' => 'history-grid',
     'dataProvider' => $model->search(),
     'filter' => $model,
     'columns' => array(
         'id',
-        'email',
-        array(
-            'name' => 'create_time',
-            'value' => 'date("H:i:s d.m.Y", $data->create_time)'
-        ),
-        array(
-            'name' => 'update_time',
-            'value' => 'date("H:i:s d.m.Y", $data->update_time)'
-        ),
-        array(
-            'name' => 'last_login_time',
-            'value' => 'date("H:i:s d.m.Y", $data->last_login_time)'
-        ),
+        'name',
+        'tst',
+        'create_time',
+        'update_time',
         array(
             'class' => 'CButtonColumn',
         ),
