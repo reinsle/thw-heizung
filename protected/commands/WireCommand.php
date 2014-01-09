@@ -14,9 +14,13 @@ class WireCommand extends CConsoleCommand
     public function actionInit()
     {
         shell_exec('/usr/local/bin/gpio mode 0 out');
+        shell_exec('/usr/local/bin/gpio write 0 1');
         shell_exec('/usr/local/bin/gpio mode 2 out');
+        shell_exec('/usr/local/bin/gpio write 2 1');
         shell_exec('/usr/local/bin/gpio mode 3 out');
+        shell_exec('/usr/local/bin/gpio write 3 1');
         shell_exec('/usr/local/bin/gpio mode 4 out');
+        shell_exec('/usr/local/bin/gpio write 4 1');
     }
 
     /**
