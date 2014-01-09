@@ -33,7 +33,26 @@ class WireCommand extends CConsoleCommand
         if (count($data) == 0) {
             // select event where start >= now() - 5 h and end < now()
             $events = Event::model()->findAllBySql("SELECT * FROM tbl_event WHERE now() BETWEEN to_timestamp(start) - INTERVAL '300 minutes' AND to_timestamp(ende)");
-            echo count($events);
+            $output = shell_exec('/usr/local/bin/gpio read 0');
+            if (count($events)) {
+                // Switch heizung to on
+                if ($output === '1') {
+                    $model = new History();
+                    $model->name = 'Switch heater on';
+                    $model->tst = new DateTime();
+                    $model->save();
+                    shell_exec('/usr/local/bin/gpio write 0 0');
+                }
+            } else {
+                // Switch heizung to off
+                if ($output === '0') {
+                    $model = new History();
+                    $model->name = 'Switch heater off';
+                    $model->tst = new DateTime();
+                    $model->save();
+                    shell_exec('/usr/local/bin/gpio write 0 1');
+                }
+            }
         }
     }
 }
