@@ -4,3 +4,4 @@ protected/runtime/*
 !protected/runtime/.keep
 protected/data/*.db
 .idea
+.ssh
