@@ -36,6 +36,7 @@
             'items' => array(
                 array('label' => 'Home', 'url' => array('/site/index')),
                 array('label' => 'Events', 'url' => array('/event'), 'visible' => !Yii::app()->user->isGuest),
+                array('label' => 'History', 'url' => array('/history'), 'visible' => !Yii::app()->user->isGuest),
                 array('label' => 'User', 'url' => array('/user'), 'visible' => !Yii::app()->user->isGuest),
                 array('label' => 'Login', 'url' => array('/site/login'), 'visible' => Yii::app()->user->isGuest),
                 array('label' => 'Logout (' . Yii::app()->user->name . ')', 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest)
