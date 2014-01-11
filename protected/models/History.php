@@ -28,7 +28,7 @@ class History extends CActiveRecord
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('name, create_time, update_time', 'required'),
+            array('name', 'required'),
             array('create_time, update_time', 'numerical', 'integerOnly' => true),
             array('name', 'length', 'max' => 255),
             array('tst', 'safe'),
