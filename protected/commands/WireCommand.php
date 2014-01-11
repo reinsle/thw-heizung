@@ -29,10 +29,10 @@ class WireCommand extends CConsoleCommand
     public function actionIndex()
     {
         // select history for elements < 30 min old
-        $data = History::model()->findAllBySql("SELECT * FROM tbl_history WHERE tst >= NOW() - INTERVAL '30 minutes'");
+        $data = History::model()->findAllBySql("SELECT * FROM tbl_history WHERE tst >= datetime('now', '-30 minutes')");
         if (count($data) == 0) {
             // select event where start >= now() - 5 h and end < now()
-            $events = Event::model()->findAllBySql("SELECT * FROM tbl_event WHERE now() BETWEEN to_timestamp(start) - INTERVAL '300 minutes' AND to_timestamp(ende)");
+            $events = Event::model()->findAllBySql("SELECT * FROM tbl_event WHERE datetime('now') BETWEEN datetime(datetime(start, 'unixepoch'), '-300 minutes') AND datetime(ende, 'unixepoch')");
             $output = shell_exec('/usr/local/bin/gpio read 0');
             if (count($events)) {
                 // Switch heizung to on
