@@ -44,7 +44,6 @@ class WireCommand extends CConsoleCommand
                 if ($output === '0') {
                     $model = new History();
                     $model->name = 'Switch heater on';
-                    $model->tst = new DateTime();
                     $model->save();
                     shell_exec('/usr/local/bin/gpio write 0 1');
                 }
@@ -53,7 +52,6 @@ class WireCommand extends CConsoleCommand
                 if ($output === '1') {
                     $model = new History();
                     $model->name = 'Switch heater off';
-                    $model->tst = new DateTime();
                     $model->save();
                     shell_exec('/usr/local/bin/gpio write 0 0');
                 }
