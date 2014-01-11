@@ -46,9 +46,18 @@ $('.search-form form').submit(function(){
         'id',
         'email',
         'password',
-        'create_time',
-        'update_time',
-        'last_login_time',
+        array(
+            'name' => 'create_time',
+            'value' => 'date("H:i d.m.Y", $data->create_time)'
+        ),
+        array(
+            'name' => 'update_time',
+            'value' => 'date("H:i d.m.Y", $data->update_time)'
+        ),
+        array(
+            'name' => 'last_login_time',
+            'value' => 'date("H:i d.m.Y", $data->last_login_time)'
+        ),
         array(
             'class' => 'CButtonColumn',
         ),

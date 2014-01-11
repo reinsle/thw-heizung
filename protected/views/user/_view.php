@@ -11,13 +11,13 @@
     <?php echo GxHtml::encode($data->password); ?>
     <br/>
     <?php echo GxHtml::encode($data->getAttributeLabel('create_time')); ?>:
-    <?php echo GxHtml::encode($data->create_time); ?>
+    <?php echo GxHtml::encode(date('H:i d.m.Y', $data->create_time)); ?>
     <br/>
     <?php echo GxHtml::encode($data->getAttributeLabel('update_time')); ?>:
-    <?php echo GxHtml::encode($data->update_time); ?>
+    <?php echo GxHtml::encode(date('H:i d.m.Y', $data->update_time)); ?>
     <br/>
     <?php echo GxHtml::encode($data->getAttributeLabel('last_login_time')); ?>:
-    <?php echo GxHtml::encode($data->last_login_time); ?>
+    <?php echo GxHtml::encode(date('H:i d.m.Y', $data->last_login_time)); ?>
     <br/>
 
 </div>
