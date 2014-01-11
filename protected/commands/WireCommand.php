@@ -35,14 +35,13 @@ class WireCommand extends CConsoleCommand
             $events = Event::model()->findAllBySql("SELECT * FROM tbl_event WHERE datetime('now') BETWEEN datetime(datetime(start, 'unixepoch'), '-300 minutes') AND datetime(ende, 'unixepoch')");
             $output = shell_exec('/usr/local/bin/gpio read 0');
             // Strip control characters
-            for($control = 0; $control < 32; $control++) {
+            for ($control = 0; $control < 32; $control++) {
                 $output = str_replace(chr($control), "", $output);
             }
             $output = str_replace(chr(127), "", $output);
             if (count($events)) {
                 // Switch heizung to on
                 if ($output === '0') {
-		echo 'Heizung ein!';
                     $model = new History();
                     $model->name = 'Switch heater on';
                     $model->tst = new DateTime();
@@ -51,7 +50,6 @@ class WireCommand extends CConsoleCommand
                 }
             } else {
                 // Switch heizung to off
-		echo 'Heizung aus!';
                 if ($output === '1') {
                     $model = new History();
                     $model->name = 'Switch heater off';
