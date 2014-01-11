@@ -1,9 +1,6 @@
 assets/*
 !assets/.keep
-protected/runtime/application.log
-protected/runtime/state.bin
-protected/data/testdrive.db
-protected/data/heizung.db
+protected/runtime/*
+!protected/runtime/.keep
+protected/data/*.db
 .idea
-.ssh
-.Xauthority
