@@ -6,7 +6,6 @@ $this->breadcrumbs = array(
 );
 
 $this->menu = array(
-    array('label' => 'Manage' . ' ' . History::label(2), 'url' => array('admin')),
 );
 ?>
 
