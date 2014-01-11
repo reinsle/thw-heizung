@@ -1,18 +1,20 @@
 <?php
-/* @var $this UserController */
-/* @var $model User */
 
 $this->breadcrumbs = array(
-    'Users' => array('index'),
-    'Create',
+	$model->label(2) => array('index'),
+	'Create',
 );
 
 $this->menu = array(
-    array('label' => 'List User', 'url' => array('index')),
-    array('label' => 'Manage User', 'url' => array('admin')),
+	array('label'=>'List' . ' ' . $model->label(2), 'url' => array('index')),
+	array('label'=>'Manage' . ' ' . $model->label(2), 'url' => array('admin')),
 );
 ?>
 
-    <h1>Create User</h1>
+<h1><?php echo 'Create' . ' ' . GxHtml::encode($model->label()); ?></h1>
 
-<?php $this->renderPartial('_form', array('model' => $model)); ?>
+<?php
+$this->renderPartial('_form', array(
+		'model' => $model,
+		'buttons' => 'create'));
+?>
