@@ -1,12 +1,6 @@
-<?php
-/* @var $this UserController */
-/* @var $model User */
-/* @var $form CActiveForm */
-?>
-
 <div class="wide form">
 
-    <?php $form = $this->beginWidget('CActiveForm', array(
+    <?php $form = $this->beginWidget('GxActiveForm', array(
         'action' => Yii::app()->createUrl($this->route),
         'method' => 'get',
     )); ?>
@@ -18,7 +12,7 @@
 
     <div class="row">
         <?php echo $form->label($model, 'email'); ?>
-        <?php echo $form->textField($model, 'email', array('size' => 60, 'maxlength' => 128)); ?>
+        <?php echo $form->textField($model, 'email', array('maxlength' => 128)); ?>
     </div>
 
     <div class="row">
@@ -31,8 +25,13 @@
         <?php echo $form->textField($model, 'update_time'); ?>
     </div>
 
+    <div class="row">
+        <?php echo $form->label($model, 'last_login_time'); ?>
+        <?php echo $form->textField($model, 'last_login_time'); ?>
+    </div>
+
     <div class="row buttons">
-        <?php echo CHtml::submitButton('Search'); ?>
+        <?php echo GxHtml::submitButton('Search'); ?>
     </div>
 
     <?php $this->endWidget(); ?>

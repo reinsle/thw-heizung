@@ -1,29 +1,20 @@
-<?php
-/* @var $this HistoryController */
-/* @var $data History */
-?>
-
 <div class="view">
 
-    <b><?php echo CHtml::encode($data->getAttributeLabel('id')); ?>:</b>
-    <?php echo CHtml::link(CHtml::encode($data->id), array('view', 'id' => $data->id)); ?>
+    <?php echo GxHtml::encode($data->getAttributeLabel('id')); ?>:
+    <?php echo GxHtml::link(GxHtml::encode($data->id), array('view', 'id' => $data->id)); ?>
     <br/>
 
-    <b><?php echo CHtml::encode($data->getAttributeLabel('name')); ?>:</b>
-    <?php echo CHtml::encode($data->name); ?>
+    <?php echo GxHtml::encode($data->getAttributeLabel('name')); ?>:
+    <?php echo GxHtml::encode($data->name); ?>
     <br/>
-
-    <b><?php echo CHtml::encode($data->getAttributeLabel('tst')); ?>:</b>
-    <?php echo CHtml::encode($data->tst); ?>
+    <?php echo GxHtml::encode($data->getAttributeLabel('tst')); ?>:
+    <?php echo GxHtml::encode($data->tst); ?>
     <br/>
-
-    <b><?php echo CHtml::encode($data->getAttributeLabel('create_time')); ?>:</b>
-    <?php echo CHtml::encode($data->create_time); ?>
+    <?php echo GxHtml::encode($data->getAttributeLabel('create_time')); ?>:
+    <?php echo GxHtml::encode(date('H:i d.m.Y', $data->create_time)); ?>
     <br/>
-
-    <b><?php echo CHtml::encode($data->getAttributeLabel('update_time')); ?>:</b>
-    <?php echo CHtml::encode($data->update_time); ?>
+    <?php echo GxHtml::encode($data->getAttributeLabel('update_time')); ?>:
+    <?php echo GxHtml::encode(date('H:i d.m.Y', $data->update_time)); ?>
     <br/>
-
 
 </div>

@@ -21,6 +21,7 @@ return array(
         'application.models.*',
         'application.components.*',
         'bootstrap.helpers.TbHtml',
+        'ext.giix.components.*',
     ),
 
     'modules' => array(
@@ -32,6 +33,7 @@ return array(
             'ipFilters' => array('127.0.0.1', '::1', '10.4.5.124'),
             'generatorPaths' => array(
                 'bootstrap.gii',
+                'ext.giix.generators',
             ),
         ),
     ),
@@ -43,7 +45,6 @@ return array(
             'allowAutoLogin' => true,
         ),
         // uncomment the following to enable URLs in path-format
-        /*
         'urlManager'=>array(
             'urlFormat'=>'path',
             'rules'=>array(
@@ -52,7 +53,6 @@ return array(
                 '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
             ),
         ),
-        */
         'db' => array(
             'connectionString' => 'sqlite:' . dirname(__FILE__) . '/../data/heizung.db',
         ),
@@ -99,6 +99,11 @@ return array(
         ),
         'bootstrap' => array(
             'class' => 'bootstrap.components.TbApi',
+        ),
+        'messages' => array(
+            'extensionPaths' => array(
+                'giix' => 'ext.giix.messages',
+            ),
         ),
     ),
 
