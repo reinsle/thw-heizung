@@ -45,8 +45,14 @@ $('.search-form form').submit(function(){
         'id',
         'name',
         'tst',
-        'create_time',
-        'update_time',
+        array(
+            'name' => 'create_time',
+            'value' => 'date("H:i d.m.Y", $data->create_time)'
+        ),
+        array(
+            'name' => 'update_time',
+            'value' => 'date("H:i d.m.Y", $data->update_time)'
+        ),
         array(
             'class' => 'CButtonColumn',
         ),
