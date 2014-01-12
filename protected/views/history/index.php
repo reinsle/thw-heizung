@@ -5,8 +5,7 @@ $this->breadcrumbs = array(
     'Index',
 );
 
-$this->menu = array(
-);
+$this->menu = array();
 ?>
 
     <h1><?php echo GxHtml::encode(History::label(2)); ?></h1>

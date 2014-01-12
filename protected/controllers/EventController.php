@@ -162,6 +162,17 @@ class EventController extends Controller
                 'end' => $event->ende,
                 'color' => 'blue',
                 'url' => CController::createUrl('event/view', array('id' => $event->uid)),
+                'tooltip' => date("d.m.Y/H:i", $event->start) .
+                    ' bis ' .
+                    date("d.m.Y/H:i", $event->ende) .
+                    "\r\nKategorie: " .
+                    $event->category .
+                    "\r\nTitel: " .
+                    $event->summary .
+                    "\r\nBeschreibung: " .
+                    $event->description .
+                    "\r\nOrt: " .
+                    $event->location,
             );
         }
         echo CJSON::encode($items);

@@ -10,21 +10,35 @@ $this->menu = array(
     array('label' => 'Create Event', 'url' => array('create')),
     array('label' => 'Manage Event', 'url' => array('admin')),
 );
+
+$cs = Yii::app()->clientScript;
+$cs->registerCSSFile('//cdnjs.cloudflare.com/ajax/libs/fullcalendar/1.6.4/fullcalendar.css');
+$cs->registerCSSFile('//cdnjs.cloudflare.com/ajax/libs/fullcalendar/1.6.4/fullcalendar.print.css');
+$cs->registerScriptFile('//cdnjs.cloudflare.com/ajax/libs/fullcalendar/1.6.4/fullcalendar.min.js');
 ?>
 
 <h1>Events</h1>
 
-<?php
-$this->widget('ext.EFullCalendar.EFullCalendar', array(
-    'themeCssFile' => 'cupertino/jquery-ui.min.css',
-    'lang' => 'de',
-    'options' => array(
-        'header' => array(
-            'left' => 'prev,next',
-            'center' => 'title',
-            'right' => 'today'
-        ),
-        'events' => CController::createUrl("event/calendarEvents"),
-    )
-));
-?>
+<div id='calendar'></div>
+
+<script>
+    $(document).ready(function () {
+        $('#calendar').fullCalendar({
+            firstDay: 1,
+            header: {
+                left: 'prev,next',
+                center: 'title',
+                right: 'today'
+            },
+            events: '/heizung/index.php?r=event/calendarEvents',
+            monthNames: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
+            monthNamesShort: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
+            dayNames: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
+            dayNamesShort: ['Son', 'Mon', 'Die', 'Mit', 'Don', 'Fre', 'Sam'],
+            buttonText: {'today': 'Heute', 'month': 'monat', 'week': 'Woche', 'day': 'Tag'},
+            eventRender: function (event, element) {
+                element.attr('title', event.tooltip);
+            }
+        })
+    });
+</script>
