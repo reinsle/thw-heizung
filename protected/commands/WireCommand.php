@@ -33,12 +33,7 @@ class WireCommand extends CConsoleCommand
         if (count($data) == 0) {
             // select event where start >= now() - 5 h and end < now()
             $events = Event::model()->findAllBySql("SELECT * FROM tbl_event WHERE datetime('now') BETWEEN datetime(datetime(start, 'unixepoch'), '-300 minutes') AND datetime(ende, 'unixepoch')");
-            $output = shell_exec('/usr/local/bin/gpio read 0');
-            // Strip control characters
-            for ($control = 0; $control < 32; $control++) {
-                $output = str_replace(chr($control), "", $output);
-            }
-            $output = str_replace(chr(127), "", $output);
+            $output = $this->stripString(shell_exec('/usr/local/bin/gpio read 0'));
             if (count($events)) {
                 // Switch heizung to on
                 if ($output === '0') {
@@ -58,4 +53,31 @@ class WireCommand extends CConsoleCommand
             }
         }
     }
+
+    /**
+     * Strip control characters from String
+     *
+     * @param $text text to strip characters from
+     * @return mixed striped text
+     */
+    private function stripString($text)
+    {
+        for ($control = 0; $control < 32; $control++) {
+            $text = str_replace(chr($control), "", $text);
+        }
+        $text = str_replace(chr(127), "", $text);
+        return $text;
+    }
+
+    /**
+     * Anzeige von Debug-Informationen
+     */
+    public function actionDebug()
+    {
+        $data = History::model()->findAllBySql("SELECT * FROM tbl_history WHERE tst >= datetime('now', '-30 minutes')");
+        echo "History-Eintraege der letzten 30 min: " . count($data) . "\r\n";
+        $data = Event::model()->findAllBySql("SELECT * FROM tbl_event WHERE datetime('now') BETWEEN datetime(datetime(start, 'unixepoch'), '-300 minutes') AND datetime(ende, 'unixepoch')");
+        echo "Aktuelle Event-Eintraege: " . count($data) . "\r\n";
+    }
+
 }

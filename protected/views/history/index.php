@@ -1,20 +1,17 @@
 <?php
-/* @var $this HistoryController */
-/* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs = array(
-    'Histories',
+    History::label(2),
+    'Index',
 );
 
 $this->menu = array(
-    array('label' => 'Create History', 'url' => array('create')),
-    array('label' => 'Manage History', 'url' => array('admin')),
 );
 ?>
 
-<h1>Histories</h1>
+    <h1><?php echo GxHtml::encode(History::label(2)); ?></h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
     'dataProvider' => $dataProvider,
     'itemView' => '_view',
-)); ?>
+)); 

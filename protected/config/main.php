@@ -12,10 +12,16 @@ return array(
     // preloading 'log' component
     'preload' => array('log'),
 
+    'aliases' => array(
+        'bootstrap' => realpath(__DIR__ . '/../extensions/bootstrap'),
+    ),
+
     // autoloading model and component classes
     'import' => array(
         'application.models.*',
         'application.components.*',
+        'bootstrap.helpers.TbHtml',
+        'ext.giix.components.*',
     ),
 
     'modules' => array(
@@ -25,6 +31,10 @@ return array(
             'password' => 'ni.xd.ol',
             // If removed, Gii defaults to localhost only. Edit carefully to taste.
             'ipFilters' => array('127.0.0.1', '::1', '10.4.5.124'),
+            'generatorPaths' => array(
+                'bootstrap.gii',
+                'ext.giix.generators',
+            ),
         ),
     ),
 
@@ -87,6 +97,14 @@ return array(
                     'baseUrl' => '//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3',
                     'js' => array('jquery-ui.min.js'),
                 ),
+            ),
+        ),
+        'bootstrap' => array(
+            'class' => 'bootstrap.components.TbApi',
+        ),
+        'messages' => array(
+            'extensionPaths' => array(
+                'giix' => 'ext.giix.messages',
             ),
         ),
     ),
