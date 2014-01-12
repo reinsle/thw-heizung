@@ -71,7 +71,7 @@ EOD;
                 }
             }
         }
-        echo 'es wurden ' . $insert . ' neue Datensätze angelegt, und ' . $update . ' Datensätze aktualisiert.';
+        echo 'es wurden ' . $insert . ' neue Datensätze angelegt, und ' . $update . " Datensätze aktualisiert.\r\n";
     }
 
     /**
@@ -85,7 +85,7 @@ EOD;
         foreach ($events as $event) {
             $event->delete();
         }
-        echo 'Es wurden ' . $count . ' Events gelöscht.';
+        echo 'Es wurden ' . $count . " Events gelöscht.\r\n";
     }
 
     /**
