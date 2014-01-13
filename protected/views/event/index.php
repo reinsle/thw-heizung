@@ -30,7 +30,7 @@ $cs->registerScriptFile('//cdnjs.cloudflare.com/ajax/libs/fullcalendar/1.6.4/ful
                 center: 'title',
                 right: 'today'
             },
-            events: '/heizung/index.php?r=event/calendarEvents',
+            events: '<?php echo CController::createUrl("event/calendarEvents"); ?>',
             monthNames: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
             monthNamesShort: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
             dayNames: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
