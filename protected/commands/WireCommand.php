@@ -33,23 +33,10 @@ class WireCommand extends CConsoleCommand
         if (count($data) == 0) {
             // select event where start >= now() - 5 h and end < now()
             $events = Event::model()->findAllBySql("SELECT * FROM tbl_event WHERE datetime('now') BETWEEN datetime(datetime(start, 'unixepoch'), '-300 minutes') AND datetime(ende, 'unixepoch')");
-            $output = $this->stripString(shell_exec('/usr/local/bin/gpio read 0'));
             if (count($events)) {
-                // Switch heizung to on
-                if ($output === '0') {
-                    $model = new History();
-                    $model->name = 'Switch heater on';
-                    $model->save();
-                    shell_exec('/usr/local/bin/gpio write 0 1');
-                }
+                $this->actionSwitchOn();
             } else {
-                // Switch heizung to off
-                if ($output === '1') {
-                    $model = new History();
-                    $model->name = 'Switch heater off';
-                    $model->save();
-                    shell_exec('/usr/local/bin/gpio write 0 0');
-                }
+                $this->actionSwitchOff();
             }
         }
     }
@@ -70,7 +57,7 @@ class WireCommand extends CConsoleCommand
     }
 
     /**
-     * Anzeige von Debug-Informationen
+     * Show debug informations
      */
     public function actionDebug()
     {
@@ -78,6 +65,34 @@ class WireCommand extends CConsoleCommand
         echo "History-Eintraege der letzten 30 min: " . count($data) . "\r\n";
         $data = Event::model()->findAllBySql("SELECT * FROM tbl_event WHERE datetime('now') BETWEEN datetime(datetime(start, 'unixepoch'), '-300 minutes') AND datetime(ende, 'unixepoch')");
         echo "Aktuelle Event-Eintraege: " . count($data) . "\r\n";
+    }
+
+    /**
+     * Manually switch heater on
+     */
+    public function actionSwitchOn()
+    {
+        $output = $this->stripString(shell_exec('/usr/local/bin/gpio read 0'));
+        if ($output === '0') {
+            $model = new History();
+            $model->name = 'Switch heater on';
+            $model->save();
+            shell_exec('/usr/local/bin/gpio write 0 1');
+        }
+    }
+
+    /**
+     * Manually switch heater off
+     */
+    public function actionSwitchOff()
+    {
+        $output = $this->stripString(shell_exec('/usr/local/bin/gpio read 0'));
+        if ($output === '1') {
+            $model = new History();
+            $model->name = 'Switch heater off';
+            $model->save();
+            shell_exec('/usr/local/bin/gpio write 0 0');
+        }
     }
 
 }
