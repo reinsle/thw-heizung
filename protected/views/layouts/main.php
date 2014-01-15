@@ -27,20 +27,22 @@
 
 <div class="container" id="page">
 
-    <div id="header">
-        <div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
-    </div>
-    <!-- header -->
-
     <div id="mainmenu">
-        <?php $this->widget('zii.widgets.CMenu', array(
+        <?php $this->widget('bootstrap.widgets.TbNavbar', array(
+            'brandLabel' => CHtml::encode(Yii::app()->name),
+            'display' => null,
             'items' => array(
-                array('label' => 'Home', 'url' => array('/site/index')),
-                array('label' => 'Events', 'url' => array('/event'), 'visible' => !Yii::app()->user->isGuest),
-                array('label' => 'History', 'url' => array('/history'), 'visible' => !Yii::app()->user->isGuest),
-                array('label' => 'User', 'url' => array('/user'), 'visible' => !Yii::app()->user->isGuest),
-                array('label' => 'Login', 'url' => array('/site/login'), 'visible' => Yii::app()->user->isGuest),
-                array('label' => 'Logout (' . Yii::app()->user->name . ')', 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest)
+                array(
+                    'class' => 'bootstrap.widgets.TbNav',
+                    'items' => array(
+                        array('label' => 'Home', 'url' => array('/site/index')),
+                        array('label' => 'Events', 'url' => array('/event'), 'visible' => !Yii::app()->user->isGuest),
+                        array('label' => 'History', 'url' => array('/history'), 'visible' => !Yii::app()->user->isGuest),
+                        array('label' => 'User', 'url' => array('/user'), 'visible' => !Yii::app()->user->isGuest),
+                        array('label' => 'Login', 'url' => array('/site/login'), 'visible' => Yii::app()->user->isGuest),
+                        array('label' => 'Logout (' . Yii::app()->user->name . ')', 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest)
+                    ),
+                ),
             ),
         )); ?>
     </div>
