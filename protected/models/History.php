@@ -9,6 +9,23 @@ class History extends BaseHistory
         return parent::model($className);
     }
 
+    public static function label($n = 1)
+    {
+        return Yii::t('app', 'Schaltvorg.', $n);
+    }
+
+    public function attributeLabels()
+    {
+        return array(
+            'id' => Yii::t('app', 'ID'),
+            'name' => Yii::t('app', 'Name'),
+            'tst' => Yii::t('app', 'Zeitpunkt (GMT)'),
+            'create_time' => Yii::t('app', 'Create Time'),
+            'update_time' => Yii::t('app', 'Update Time'),
+        );
+    }
+
+
     public function rules()
     {
         return array(

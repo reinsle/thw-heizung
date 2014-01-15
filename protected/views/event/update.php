@@ -3,19 +3,19 @@
 /* @var $model Event */
 
 $this->breadcrumbs = array(
-    'Events' => array('index'),
+    'Dienste' => array('index'),
     $model->uid => array('view', 'id' => $model->uid),
-    'Update',
+    'Bearb.',
 );
 
 $this->menu = array(
-    array('label' => 'List Event', 'url' => array('index')),
-    array('label' => 'Create Event', 'url' => array('create')),
-    array('label' => 'View Event', 'url' => array('view', 'id' => $model->uid)),
-    array('label' => 'Manage Event', 'url' => array('admin')),
+    array('label' => 'Terminkalender', 'url' => array('index')),
+    array('label' => 'Neuer Dienst', 'url' => array('create')),
+    array('label' => 'Zeige Dienst', 'url' => array('view', 'id' => $model->uid)),
+    array('label' => 'Bearb. Dienste', 'url' => array('admin')),
 );
 ?>
 
-    <h1>Update Event <?php echo $model->uid; ?></h1>
+    <h1><?php echo $model->uid; ?></h1>
 
 <?php $this->renderPartial('_form', array('model' => $model)); ?>

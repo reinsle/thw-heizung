@@ -1,8 +1,7 @@
 <?php
 
 $this->breadcrumbs = array(
-    History::label(2),
-    'Index',
+    'Schaltvorg.',
 );
 
 $this->menu = array();
@@ -10,8 +9,7 @@ $this->menu = array();
 
     <h1><?php echo GxHtml::encode(History::label(2)); ?></h1>
 
-<?php $this->widget('zii.widgets.grid.CGridView', array(
-    'id' => 'history-grid',
+<?php $this->widget('bootstrap.widgets.TbGridView', array(
     'dataProvider' => $dataProvider,
     'columns' => array(
         'id',
