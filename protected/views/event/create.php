@@ -3,16 +3,16 @@
 /* @var $model Event */
 
 $this->breadcrumbs = array(
-    'Events' => array('index'),
-    'Create',
+    'Dienste' => array('index'),
+    'Neu',
 );
 
 $this->menu = array(
-    array('label' => 'List Event', 'url' => array('index')),
-    array('label' => 'Manage Event', 'url' => array('admin')),
+    array('label' => 'Dienstkalender', 'url' => array('index')),
+    array('label' => 'Bearb. Dienste', 'url' => array('admin')),
 );
 ?>
 
-    <h1>Create Event</h1>
+    <h1>Neuer Dienst</h1>
 
 <?php $this->renderPartial('_form', array('model' => $model)); ?>

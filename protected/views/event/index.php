@@ -3,12 +3,12 @@
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs = array(
-    'Events',
+    'Dienste',
 );
 
 $this->menu = array(
-    array('label' => 'Create Event', 'url' => array('create')),
-    array('label' => 'Manage Event', 'url' => array('admin')),
+    array('label' => 'Neuer Dienst', 'url' => array('create')),
+    array('label' => 'Bearb. Dienste', 'url' => array('admin')),
 );
 
 $cs = Yii::app()->clientScript;
@@ -17,7 +17,7 @@ $cs->registerCSSFile('//cdnjs.cloudflare.com/ajax/libs/fullcalendar/1.6.4/fullca
 $cs->registerScriptFile('//cdnjs.cloudflare.com/ajax/libs/fullcalendar/1.6.4/fullcalendar.min.js');
 ?>
 
-<h1>Events</h1>
+<h1>Dienste</h1>
 
 <div id='calendar'></div>
 

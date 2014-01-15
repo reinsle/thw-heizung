@@ -3,16 +3,16 @@
 /* @var $model Event */
 
 $this->breadcrumbs = array(
-    'Events' => array('index'),
+    'Dienste' => array('index'),
     $model->uid,
 );
 
 $this->menu = array(
-    array('label' => 'List Event', 'url' => array('index')),
-    array('label' => 'Create Event', 'url' => array('create')),
-    array('label' => 'Update Event', 'url' => array('update', 'id' => $model->uid)),
-    array('label' => 'Delete Event', 'url' => '#', 'linkOptions' => array('submit' => array('delete', 'id' => $model->uid), 'confirm' => 'Are you sure you want to delete this item?')),
-    array('label' => 'Manage Event', 'url' => array('admin')),
+    array('label' => 'Terminkalender', 'url' => array('index')),
+    array('label' => 'Neuer Dienst', 'url' => array('create')),
+    array('label' => 'Dienst bearb.', 'url' => array('update', 'id' => $model->uid)),
+    array('label' => 'Dienst löschen', 'url' => '#', 'linkOptions' => array('submit' => array('delete', 'id' => $model->uid), 'confirm' => 'Soll der Dienst gelöscht werden?')),
+    array('label' => 'Bearb. Dienste', 'url' => array('admin')),
 );
 ?>
 

@@ -1,8 +1,7 @@
 <?php
 
 $this->breadcrumbs = array(
-    History::label(2),
-    'Index',
+    'Schaltvorg.',
 );
 
 $this->menu = array();

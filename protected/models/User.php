@@ -11,6 +11,11 @@ class User extends BaseUser
         return parent::model($className);
     }
 
+    public static function label($n = 1)
+    {
+        return Yii::t('app', 'Benutzer', $n);
+    }
+
     public function rules()
     {
         return array(

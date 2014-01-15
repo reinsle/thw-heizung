@@ -11,7 +11,7 @@ class History extends BaseHistory
 
     public static function label($n = 1)
     {
-        return Yii::t('app', 'Vorgang|Vorgänge', $n);
+        return Yii::t('app', 'Schaltvorg.', $n);
     }
 
     public function attributeLabels()

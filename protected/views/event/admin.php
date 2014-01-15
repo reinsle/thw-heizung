@@ -3,13 +3,13 @@
 /* @var $model Event */
 
 $this->breadcrumbs = array(
-    'Events' => array('index'),
-    'Manage',
+    'Dienste' => array('index'),
+    'Bearb.',
 );
 
 $this->menu = array(
-    array('label' => 'List Event', 'url' => array('index')),
-    array('label' => 'Create Event', 'url' => array('create')),
+    array('label' => 'Terminkalender', 'url' => array('index')),
+    array('label' => 'Neuer Dienst', 'url' => array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -26,7 +26,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage Events</h1>
+<h1>Bearb. Dienste</h1>
 
 <p>
     You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>
