@@ -9,8 +9,6 @@
 class EventCommand extends CConsoleCommand
 {
 
-    private $ICAL_URL = 'http://ov-kempten.ov-cms.thw.de/unser-thw-ortsverband/terminkalender/kalender/ics/?type=150&tx_cal_controller%5Bcalendar%5D=20';
-
     public function getHelp()
     {
         return <<<EOD
@@ -45,7 +43,7 @@ EOD;
     public function actionFetch()
     {
         date_default_timezone_set('Europe/Berlin');
-        $newEvents = $this->icsToArray($this->ICAL_URL);
+        $newEvents = $this->icsToArray(Yii::app()->params['ICAL_URL']);
         $insert = 0;
         $update = 0;
         foreach ($newEvents as &$newEvent) {
