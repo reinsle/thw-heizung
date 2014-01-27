@@ -32,7 +32,7 @@ class WireCommand extends CConsoleCommand
         $data = History::model()->findAllBySql("SELECT * FROM tbl_history WHERE tst >= datetime('now', '-30 minutes')");
         if (count($data) == 0) {
             // select event where start >= now() - 5 h and end < now()
-            $events = Event::model()->findAllBySql("SELECT * FROM tbl_event WHERE datetime('now') BETWEEN datetime(datetime(start, 'unixepoch'), '-300 minutes') AND datetime(ende, 'unixepoch')");
+            $events = Event::model()->findAllBySql("SELECT * FROM tbl_event WHERE datetime('now') BETWEEN datetime(datetime(start, 'unixepoch'), '-240 minutes') AND datetime(ende, 'unixepoch')");
             if (count($events)) {
                 $this->actionSwitchOn();
             } else {
