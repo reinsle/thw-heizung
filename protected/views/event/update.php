@@ -7,10 +7,10 @@ $this->breadcrumbs = array(
 );
 
 $this->menu = array(
-    array('label' => 'List' . ' ' . $model->label(2), 'url' => array('index')),
-    array('label' => 'Create' . ' ' . $model->label(), 'url' => array('create')),
-    array('label' => 'View' . ' ' . $model->label(), 'url' => array('view', 'id' => GxActiveRecord::extractPkValue($model, true))),
-    array('label' => 'Manage' . ' ' . $model->label(2), 'url' => array('admin')),
+    array('label' => 'Dienstkalender', 'url' => array('index')),
+    array('label' => 'Neuer ' . ' ' . $model->label(), 'url' => array('create')),
+    array('label' => 'Zeige ' . ' ' . $model->label(), 'url' => array('view', 'id' => GxActiveRecord::extractPkValue($model, true))),
+    array('label' => 'Zeige ' . ' ' . $model->label(2), 'url' => array('admin')),
 );
 ?>
 
