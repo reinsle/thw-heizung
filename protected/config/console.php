@@ -15,9 +15,7 @@ return array(
     ),
     // application components
     'components' => array(
-        'db' => array(
-            'connectionString' => 'sqlite:' . dirname(__FILE__) . '/../data/heizung.db',
-        ),
+        'db' => require(dirname(__FILE__) . '/db.php'),
         // uncomment the following to use a MySQL database
         /*
         'db' => array(
