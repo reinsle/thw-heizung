@@ -1,14 +1,13 @@
 <?php
-/* @var $this EventController */
-/* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs = array(
-    'Dienste',
+    Event::label(2),
+    'Index',
 );
 
 $this->menu = array(
-    array('label' => 'Neuer Dienst', 'url' => array('create')),
-    array('label' => 'Bearb. Dienste', 'url' => array('admin')),
+    array('label' => 'Neuer ' . ' ' . Event::label(), 'url' => array('create')),
+    array('label' => 'Zeige ' . ' ' . Event::label(2), 'url' => array('admin')),
 );
 
 $cs = Yii::app()->clientScript;
@@ -17,7 +16,7 @@ $cs->registerCSSFile('//cdnjs.cloudflare.com/ajax/libs/fullcalendar/1.6.4/fullca
 $cs->registerScriptFile('//cdnjs.cloudflare.com/ajax/libs/fullcalendar/1.6.4/fullcalendar.min.js');
 ?>
 
-<h1>Dienste</h1>
+    <h1><?php echo GxHtml::encode(Event::label(2)); ?></h1>
 
 <div id='calendar'></div>
 
@@ -36,9 +35,6 @@ $cs->registerScriptFile('//cdnjs.cloudflare.com/ajax/libs/fullcalendar/1.6.4/ful
             dayNames: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
             dayNamesShort: ['Son', 'Mon', 'Die', 'Mit', 'Don', 'Fre', 'Sam'],
             buttonText: {'today': 'Heute', 'month': 'monat', 'week': 'Woche', 'day': 'Tag'},
-            eventRender: function (event, element) {
-                element.attr('title', event.tooltip);
-            }
         })
     });
 </script>

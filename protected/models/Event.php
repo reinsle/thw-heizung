@@ -9,6 +9,11 @@ class Event extends BaseEvent
         return parent::model($className);
     }
 
+    public static function label($n = 1)
+    {
+        return Yii::t('app', 'Dienst|Dienste', $n);
+    }
+
     /**
      * @return array validation rules for model attributes.
      */
@@ -19,10 +24,11 @@ class Event extends BaseEvent
         return array(
             array('uid, start, ende', 'required'),
             array('uid', 'unique'),
+            array('active', 'boolean'),
             array('uid, category, location', 'length', 'max' => 64),
             array('summary', 'length', 'max' => 255),
             array('description', 'safe'),
-            array('uid, start, ende, category, summary, description, location', 'safe', 'on' => 'search'),
+            array('uid, start, ende, category, summary, description, location, active', 'safe', 'on' => 'search'),
         );
     }
 
@@ -41,6 +47,7 @@ class Event extends BaseEvent
             'location' => 'Location',
             'create_time' => 'Create Time',
             'update_time' => 'Update Time',
+            'active' => 'Aktiv',
         );
     }
 

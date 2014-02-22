@@ -21,77 +21,85 @@
  * @property integer $active
  *
  */
-abstract class BaseEvent extends GxActiveRecord {
+abstract class BaseEvent extends GxActiveRecord
+{
 
-	public static function model($className=__CLASS__) {
-		return parent::model($className);
-	}
+    public static function model($className = __CLASS__)
+    {
+        return parent::model($className);
+    }
 
-	public function tableName() {
-		return 'tbl_event';
-	}
+    public function tableName()
+    {
+        return 'tbl_event';
+    }
 
-	public static function label($n = 1) {
-		return Yii::t('app', 'Event|Events', $n);
-	}
+    public static function label($n = 1)
+    {
+        return Yii::t('app', 'Event|Events', $n);
+    }
 
-	public static function representingColumn() {
-		return 'uid';
-	}
+    public static function representingColumn()
+    {
+        return 'uid';
+    }
 
-	public function rules() {
-		return array(
-			array('uid, start, ende, create_time, update_time', 'required'),
-			array('start, ende, create_time, update_time, active', 'numerical', 'integerOnly'=>true),
-			array('uid, category, location', 'length', 'max'=>64),
-			array('summary', 'length', 'max'=>255),
-			array('description', 'safe'),
-			array('category, summary, description, location, active', 'default', 'setOnEmpty' => true, 'value' => null),
-			array('uid, start, ende, category, summary, description, location, create_time, update_time, active', 'safe', 'on'=>'search'),
-		);
-	}
+    public function rules()
+    {
+        return array(
+            array('uid, start, ende, create_time, update_time', 'required'),
+            array('start, ende, create_time, update_time, active', 'numerical', 'integerOnly' => true),
+            array('uid, category, location', 'length', 'max' => 64),
+            array('summary', 'length', 'max' => 255),
+            array('description', 'safe'),
+            array('category, summary, description, location, active', 'default', 'setOnEmpty' => true, 'value' => null),
+            array('uid, start, ende, category, summary, description, location, create_time, update_time, active', 'safe', 'on' => 'search'),
+        );
+    }
 
-	public function relations() {
-		return array(
-		);
-	}
+    public function relations()
+    {
+        return array();
+    }
 
-	public function pivotModels() {
-		return array(
-		);
-	}
+    public function pivotModels()
+    {
+        return array();
+    }
 
-	public function attributeLabels() {
-		return array(
-			'uid' => Yii::t('app', 'Uid'),
-			'start' => Yii::t('app', 'Start'),
-			'ende' => Yii::t('app', 'Ende'),
-			'category' => Yii::t('app', 'Category'),
-			'summary' => Yii::t('app', 'Summary'),
-			'description' => Yii::t('app', 'Description'),
-			'location' => Yii::t('app', 'Location'),
-			'create_time' => Yii::t('app', 'Create Time'),
-			'update_time' => Yii::t('app', 'Update Time'),
-			'active' => Yii::t('app', 'Active'),
-		);
-	}
+    public function attributeLabels()
+    {
+        return array(
+            'uid' => Yii::t('app', 'Uid'),
+            'start' => Yii::t('app', 'Start'),
+            'ende' => Yii::t('app', 'Ende'),
+            'category' => Yii::t('app', 'Category'),
+            'summary' => Yii::t('app', 'Summary'),
+            'description' => Yii::t('app', 'Description'),
+            'location' => Yii::t('app', 'Location'),
+            'create_time' => Yii::t('app', 'Create Time'),
+            'update_time' => Yii::t('app', 'Update Time'),
+            'active' => Yii::t('app', 'Active'),
+        );
+    }
 
-	public function search() {
-		$criteria = new CDbCriteria;
+    public function search()
+    {
+        $criteria = new CDbCriteria;
 
-		$criteria->compare('uid', $this->uid, true);
-		$criteria->compare('start', $this->start);
-		$criteria->compare('ende', $this->ende);
-		$criteria->compare('category', $this->category, true);
-		$criteria->compare('summary', $this->summary, true);
-		$criteria->compare('description', $this->description, true);
-		$criteria->compare('location', $this->location, true);
-		$criteria->compare('create_time', $this->create_time);
-		$criteria->compare('update_time', $this->update_time);
-		$criteria->compare('active', $this->active);
+        $criteria->compare('uid', $this->uid, true);
+        $criteria->compare('start', $this->start);
+        $criteria->compare('ende', $this->ende);
+        $criteria->compare('category', $this->category, true);
+        $criteria->compare('summary', $this->summary, true);
+        $criteria->compare('description', $this->description, true);
+        $criteria->compare('location', $this->location, true);
+        $criteria->compare('create_time', $this->create_time);
+        $criteria->compare('update_time', $this->update_time);
+        $criteria->compare('active', $this->active);
 
-		return new CActiveDataProvider($this, array(
-			'criteria' => $criteria,
-		));
-	}
+        return new CActiveDataProvider($this, array(
+            'criteria' => $criteria,
+        ));
+    }
 }

@@ -1,39 +1,37 @@
-<?php
-/* @var $this EventController */
-/* @var $data Event */
-?>
-
 <div class="view">
 
-    <b><?php echo CHtml::encode($data->getAttributeLabel('uid')); ?>:</b>
-    <?php echo CHtml::link(CHtml::encode($data->uid), array('view', 'id' => $data->uid)); ?>
+    <?php echo GxHtml::encode($data->getAttributeLabel('uid')); ?>:
+    <?php echo GxHtml::link(GxHtml::encode($data->uid), array('view', 'id' => $data->uid)); ?>
     <br/>
 
-    <b><?php echo CHtml::encode($data->getAttributeLabel('start')); ?>:</b>
-    <?php echo CHtml::encode(date('H:i d.m.Y', $data->start)); ?>
+    <?php echo GxHtml::encode($data->getAttributeLabel('start')); ?>:
+    <?php echo GxHtml::encode($data->start); ?>
     <br/>
-
-    <b><?php echo CHtml::encode($data->getAttributeLabel('ende')); ?>:</b>
-    <?php echo CHtml::encode(date('H:i d.m.Y', $data->ende)); ?>
+    <?php echo GxHtml::encode($data->getAttributeLabel('ende')); ?>:
+    <?php echo GxHtml::encode($data->ende); ?>
     <br/>
-
-    <b><?php echo CHtml::encode($data->getAttributeLabel('category')); ?>:</b>
-    <?php echo CHtml::encode($data->category); ?>
+    <?php echo GxHtml::encode($data->getAttributeLabel('category')); ?>:
+    <?php echo GxHtml::encode($data->category); ?>
     <br/>
-
-    <b><?php echo CHtml::encode($data->getAttributeLabel('summary')); ?>:</b>
-    <?php echo CHtml::encode($data->summary); ?>
+    <?php echo GxHtml::encode($data->getAttributeLabel('summary')); ?>:
+    <?php echo GxHtml::encode($data->summary); ?>
     <br/>
-
-    <b><?php echo CHtml::encode($data->getAttributeLabel('description')); ?>:</b>
-    <?php echo CHtml::encode($data->description); ?>
+    <?php echo GxHtml::encode($data->getAttributeLabel('description')); ?>:
+    <?php echo GxHtml::encode($data->description); ?>
     <br/>
-
+    <?php echo GxHtml::encode($data->getAttributeLabel('location')); ?>:
+    <?php echo GxHtml::encode($data->location); ?>
+    <br/>
     <?php /*
-	<b><?php echo CHtml::encode($data->getAttributeLabel('location')); ?>:</b>
-	<?php echo CHtml::encode($data->location); ?>
+	<?php echo GxHtml::encode($data->getAttributeLabel('create_time')); ?>:
+	<?php echo GxHtml::encode($data->create_time); ?>
 	<br />
-
+	<?php echo GxHtml::encode($data->getAttributeLabel('update_time')); ?>:
+	<?php echo GxHtml::encode($data->update_time); ?>
+	<br />
+	<?php echo GxHtml::encode($data->getAttributeLabel('active')); ?>:
+	<?php echo GxHtml::encode($data->active); ?>
+	<br />
 	*/
     ?>
 

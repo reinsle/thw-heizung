@@ -1,18 +1,20 @@
 <?php
-/* @var $this EventController */
-/* @var $model Event */
 
 $this->breadcrumbs = array(
-    'Dienste' => array('index'),
-    'Neu',
+    $model->label(2) => array('index'),
+    'Create',
 );
 
 $this->menu = array(
     array('label' => 'Dienstkalender', 'url' => array('index')),
-    array('label' => 'Bearb. Dienste', 'url' => array('admin')),
+    array('label' => 'Zeige ' . ' ' . $model->label(2), 'url' => array('admin')),
 );
 ?>
 
-    <h1>Neuer Dienst</h1>
+    <h1><?php echo 'Create' . ' ' . GxHtml::encode($model->label()); ?></h1>
 
-<?php $this->renderPartial('_form', array('model' => $model)); ?>
+<?php
+$this->renderPartial('_form', array(
+    'model' => $model,
+    'buttons' => 'create'));
+?>

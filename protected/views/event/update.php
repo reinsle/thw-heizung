@@ -1,21 +1,22 @@
 <?php
-/* @var $this EventController */
-/* @var $model Event */
 
 $this->breadcrumbs = array(
-    'Dienste' => array('index'),
-    $model->uid => array('view', 'id' => $model->uid),
-    'Bearb.',
+    $model->label(2) => array('index'),
+    GxHtml::valueEx($model) => array('view', 'id' => GxActiveRecord::extractPkValue($model, true)),
+    'Update',
 );
 
 $this->menu = array(
-    array('label' => 'Terminkalender', 'url' => array('index')),
-    array('label' => 'Neuer Dienst', 'url' => array('create')),
-    array('label' => 'Zeige Dienst', 'url' => array('view', 'id' => $model->uid)),
-    array('label' => 'Bearb. Dienste', 'url' => array('admin')),
+    array('label' => 'List' . ' ' . $model->label(2), 'url' => array('index')),
+    array('label' => 'Create' . ' ' . $model->label(), 'url' => array('create')),
+    array('label' => 'View' . ' ' . $model->label(), 'url' => array('view', 'id' => GxActiveRecord::extractPkValue($model, true))),
+    array('label' => 'Manage' . ' ' . $model->label(2), 'url' => array('admin')),
 );
 ?>
 
-    <h1><?php echo $model->uid; ?></h1>
+    <h1><?php echo 'Update' . ' ' . GxHtml::encode($model->label()) . ' ' . GxHtml::encode(GxHtml::valueEx($model)); ?></h1>
 
-<?php $this->renderPartial('_form', array('model' => $model)); ?>
+<?php
+$this->renderPartial('_form', array(
+    'model' => $model));
+?>
