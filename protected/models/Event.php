@@ -85,4 +85,11 @@ class Event extends BaseEvent
         }
     }
 
+    public function getLocationOptions(){
+        return array(
+            'Unterkunft OV Kempten' => 'Unterkunft OV Kempten',
+            'Irgendwo' => 'Irgendwo'
+        );
+    }
+
 }

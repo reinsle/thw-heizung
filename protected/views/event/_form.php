@@ -104,7 +104,9 @@ function roundTime($increment, $timestamp = 0)
 
     <div class="row">
         <?php echo $form->labelEx($model, 'location'); ?>
-        <?php echo $form->textField($model, 'location', array('size' => 60, 'maxlength' => 64)); ?>
+        <?php echo $form->dropDownList($model, 'location',
+            $model->locationOptions,
+            array('empty' => '(Bitte Ort auswählen)')); ?>
         <?php echo $form->error($model, 'location'); ?>
     </div>
 
