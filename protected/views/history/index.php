@@ -16,8 +16,5 @@ $this->breadcrumbs = array(
         'tst',
         'create_time',
         'update_time',
-        array(
-            'class' => 'CButtonColumn',
-        ),
     ),
 ));
