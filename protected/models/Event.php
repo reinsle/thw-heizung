@@ -1,27 +1,17 @@
 <?php
 
-/**
- * This is the model class for table "tbl_event".
- *
- * The followings are the available columns in table 'tbl_event':
- * @property string $uid
- * @property integer $start
- * @property integer $ende
- * @property string $category
- * @property string $summary
- * @property string $description
- * @property string $location
- * @property integer $create_time
- * @property integer $update_time
- */
-class Event extends CActiveRecord
+Yii::import('application.models._base.BaseEvent');
+
+class Event extends BaseEvent
 {
-    /**
-     * @return string the associated database table name
-     */
-    public function tableName()
+    public static function model($className = __CLASS__)
     {
-        return 'tbl_event';
+        return parent::model($className);
+    }
+
+    public static function label($n = 1)
+    {
+        return Yii::t('app', 'Dienst|Dienste', $n);
     }
 
     /**
@@ -34,21 +24,12 @@ class Event extends CActiveRecord
         return array(
             array('uid, start, ende', 'required'),
             array('uid', 'unique'),
+            array('active', 'boolean'),
             array('uid, category, location', 'length', 'max' => 64),
             array('summary', 'length', 'max' => 255),
             array('description', 'safe'),
-            array('uid, start, ende, category, summary, description, location', 'safe', 'on' => 'search'),
+            array('uid, start, ende, category, summary, description, location, active', 'safe', 'on' => 'search'),
         );
-    }
-
-    /**
-     * @return array relational rules.
-     */
-    public function relations()
-    {
-        // NOTE: you may need to adjust the relation name and the related
-        // class name for the relations automatically generated below.
-        return array();
     }
 
     /**
@@ -66,41 +47,8 @@ class Event extends CActiveRecord
             'location' => 'Location',
             'create_time' => 'Create Time',
             'update_time' => 'Update Time',
+            'active' => 'Aktiv',
         );
-    }
-
-    /**
-     * Retrieves a list of models based on the current search/filter conditions.
-     *
-     * Typical usecase:
-     * - Initialize the model fields with values from filter form.
-     * - Execute this method to get CActiveDataProvider instance which will filter
-     * models according to data in model fields.
-     * - Pass data provider to CGridView, CListView or any similar widget.
-     *
-     * @return CActiveDataProvider the data provider that can return the models
-     * based on the search/filter conditions.
-     */
-    public function search()
-    {
-        // @todo Please modify the following code to remove attributes that should not be searched.
-
-        $criteria = new CDbCriteria;
-
-        $criteria->compare('uid', $this->uid, true);
-        $criteria->compare('start', $this->start);
-        $criteria->compare('ende', $this->ende);
-        $criteria->compare('category', $this->category, true);
-        $criteria->compare('summary', $this->summary, true);
-        $criteria->compare('description', $this->description, true);
-        $criteria->compare('location', $this->location, true);
-        $criteria->compare('create_time', $this->create_time, true);
-        $criteria->compare('update_time', $this->update_time, true);
-        $criteria->order = 'start ASC';
-
-        return new CActiveDataProvider($this, array(
-            'criteria' => $criteria,
-        ));
     }
 
     /**
@@ -137,14 +85,11 @@ class Event extends CActiveRecord
         }
     }
 
-    /**
-     * Returns the static model of the specified AR class.
-     * Please note that you should have this exact method in all your CActiveRecord descendants!
-     * @param string $className active record class name.
-     * @return Event the static model class
-     */
-    public static function model($className = __CLASS__)
-    {
-        return parent::model($className);
+    public function getLocationOptions(){
+        return array(
+            'Unterkunft OV Kempten' => 'Unterkunft OV Kempten',
+            'Irgendwo' => 'Irgendwo'
+        );
     }
+
 }

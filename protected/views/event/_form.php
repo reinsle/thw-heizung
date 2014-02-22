@@ -1,12 +1,7 @@
 <?php
-/* @var $this EventController */
-/* @var $model Event */
-/* @var $form CActiveForm */
-
-Yii::app()->clientScript->registerCoreScript('jquery');
-Yii::app()->clientScript->registerCoreScript('jquery.ui');
-
 $cs = Yii::app()->getClientScript();
+$cs->registerCoreScript('jquery');
+$cs->registerCoreScript('jquery.ui');
 $js_file = dirname(__FILE__) . DIRECTORY_SEPARATOR . 'jquery.simple-dtpicker.js';
 $js_url = Yii::app()->getAssetManager()->publish($js_file);
 $cs->registerScriptFile($js_url);
@@ -36,19 +31,16 @@ function roundTime($increment, $timestamp = 0)
 
     return $increments[$key];
 }
-
 ?>
 
 <div class="form">
 
-    <?php $form = $this->beginWidget('CActiveForm', array(
+
+    <?php $form = $this->beginWidget('GxActiveForm', array(
         'id' => 'event-form',
-        // Please note: When you enable ajax validation, make sure the corresponding
-        // controller action is handling ajax validation correctly.
-        // There is a call to performAjaxValidation() commented in generated controller code.
-        // See class documentation of CActiveForm for details on this.
-        'enableAjaxValidation' => false,
-    )); ?>
+        'enableAjaxValidation' => true,
+    ));
+    ?>
 
     <p class="note">Fields with <span class="required">*</span> are required.</p>
 
@@ -112,7 +104,9 @@ function roundTime($increment, $timestamp = 0)
 
     <div class="row">
         <?php echo $form->labelEx($model, 'location'); ?>
-        <?php echo $form->textField($model, 'location', array('size' => 60, 'maxlength' => 64)); ?>
+        <?php echo $form->dropDownList($model, 'location',
+            $model->locationOptions,
+            array('empty' => '(Bitte Ort auswählen)')); ?>
         <?php echo $form->error($model, 'location'); ?>
     </div>
 

@@ -52,9 +52,7 @@ return array(
             ),
         ),
         */
-        'db' => array(
-            'connectionString' => 'sqlite:' . dirname(__FILE__) . '/../data/heizung.db',
-        ),
+        'db' => require(dirname(__FILE__) . '/db.php'),
         // uncomment the following to use a MySQL database
         /*
         'db'=>array(
@@ -77,22 +75,10 @@ return array(
                     'levels' => 'error, warning',
                 ),
                 // uncomment the following to show log messages on web pages
-                /*
                 array(
                     'class'=>'CWebLogRoute',
-                ),
-                */
-            ),
-        ),
-        'clientScript' => array(
-            'packages' => array(
-                'jquery' => array(
-                    'baseUrl' => '//ajax.googleapis.com/ajax/libs/jquery/2.0.3',
-                    'js' => array('jquery.min.js'),
-                ),
-                'jquery.ui' => array(
-                    'baseUrl' => '//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3',
-                    'js' => array('jquery-ui.min.js'),
+                    'class' => 'CFileLogRoute',
+                    'levels' => 'error, warning, info',
                 ),
             ),
         ),

@@ -32,7 +32,7 @@ class WireCommand extends CConsoleCommand
         $data = History::model()->findAllBySql("SELECT * FROM tbl_history WHERE tst >= datetime('now', '-30 minutes')");
         if (count($data) == 0) {
             // select event where start >= now() - 5 h and end < now()
-            $events = Event::model()->findAllBySql("SELECT * FROM tbl_event WHERE datetime('now') BETWEEN datetime(datetime(start, 'unixepoch'), '-240 minutes') AND datetime(ende, 'unixepoch') AND LOWER(location) = 'unterkunft ov kempten'");
+            $events = Event::model()->findAllBySql("SELECT * FROM tbl_event WHERE datetime('now') BETWEEN datetime(datetime(start, 'unixepoch'), '-240 minutes') AND datetime(ende, 'unixepoch') AND LOWER(location) = 'unterkunft ov kempten' AND active = 1");
             if (count($events)) {
                 $this->actionSwitchOn();
             } else {
@@ -63,7 +63,7 @@ class WireCommand extends CConsoleCommand
     {
         $data = History::model()->findAllBySql("SELECT * FROM tbl_history WHERE tst >= datetime('now', '-30 minutes')");
         echo "History-Eintraege der letzten 30 min: " . count($data) . "\r\n";
-        $data = Event::model()->findAllBySql("SELECT * FROM tbl_event WHERE datetime('now') BETWEEN datetime(datetime(start, 'unixepoch'), '-300 minutes') AND datetime(ende, 'unixepoch') AND LOWER(location) = 'unterkunft ov kempten'");
+        $data = Event::model()->findAllBySql("SELECT * FROM tbl_event WHERE datetime('now') BETWEEN datetime(datetime(start, 'unixepoch'), '-300 minutes') AND datetime(ende, 'unixepoch') AND LOWER(location) = 'unterkunft ov kempten' AND active = 1");
         echo "Aktuelle Event-Eintraege: " . count($data) . "\r\n";
     }
 

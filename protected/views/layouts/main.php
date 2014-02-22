@@ -50,7 +50,7 @@
 
     <?php if (isset($this->breadcrumbs)): ?>
         <?php $this->widget('bootstrap.widgets.TbBreadcrumb', array(
-            'links'=>$this->breadcrumbs,
+            'links' => $this->breadcrumbs,
         )); ?><!-- breadcrumbs -->
     <?php endif ?>
 
@@ -60,7 +60,7 @@
 
     <div id="footer">
         Copyright &copy; <?php echo date('Y'); ?> by einsle.de.<br/>
-        (v1.4.2) All Rights Reserved.<br/>
+        (v1.5) All Rights Reserved.<br/>
         <?php echo Yii::powered(); ?>
     </div>
     <!-- footer -->
