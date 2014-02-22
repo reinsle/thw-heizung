@@ -1,11 +1,11 @@
 <?php
 $this->breadcrumbs = array(
-	History::label(2),
-	'Index',
+    History::label(2),
+    'Index',
 );
 ?>
 
-<h1><?php echo GxHtml::encode(History::label(2)); ?></h1>
+    <h1><?php echo GxHtml::encode(History::label(2)); ?></h1>
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
     'id' => 'history-grid',
