@@ -94,7 +94,12 @@ EOD;
      */
     function icsToArray($paramUrl)
     {
-        $icsFile = file_get_contents($paramUrl);
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $paramUrl);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.13) Gecko/20080311 Firefox/2.0.0.13');
+        $icsFile = curl_exec($ch);
+        curl_close($ch);
         $icsData = explode("BEGIN:", $icsFile);
         foreach ($icsData as $key => $value) {
             $icsDatesMeta[$key] = explode("\n", $value);
