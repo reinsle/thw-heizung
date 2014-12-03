@@ -31,6 +31,7 @@ function roundTime($increment, $timestamp = 0)
 
     return $increments[$key];
 }
+
 ?>
 
 <div class="form">
@@ -65,7 +66,8 @@ function roundTime($increment, $timestamp = 0)
             'locale': 'de',
             'dateFormat': 'hh:mm DD.MM.YYYY',
             'minuteInterval': 30,
-            'firstDayOfWeek': 1});
+            'firstDayOfWeek': 1
+        });
     </script>
 
     <div class="row">
@@ -81,7 +83,8 @@ function roundTime($increment, $timestamp = 0)
             'locale': 'de',
             'dateFormat': 'hh:mm DD.MM.YYYY',
             'minuteInterval': 30,
-            'firstDayOfWeek': 1});
+            'firstDayOfWeek': 1
+        });
     </script>
 
     <div class="row">

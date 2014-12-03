@@ -1,7 +1,5 @@
 <?php
 
-require_once('_common.inc');
-
 return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
     'name' => 'My Console Application',
@@ -36,5 +34,5 @@ return array(
             ),
         ),
     ),
-    'params' => $commonParams
+    'params' => require(dirname(__FILE__) . '/params.php'),
 );

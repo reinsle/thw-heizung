@@ -75,28 +75,24 @@ class UserController extends GxController
             $this->loadModel($id, 'User')->delete();
 
             if (!Yii::app()->getRequest()->getIsAjaxRequest())
-                $this->redirect(array('admin'));
+                $this->redirect(array('index'));
         } else
             throw new CHttpException(400, Yii::t('app', 'Your request is invalid.'));
     }
 
     public function actionIndex()
     {
-        $dataProvider = new CActiveDataProvider('User');
-        $this->render('index', array(
-            'dataProvider' => $dataProvider,
-        ));
-    }
-
-    public function actionAdmin()
-    {
+        if (isset($_GET['pageSize'])) {
+            Yii::app()->user->setState('pageSize', (int)$_GET['pageSize']);
+            unset($_GET['pageSize']);
+        }
         $model = new User('search');
         $model->unsetAttributes();
 
         if (isset($_GET['User']))
             $model->setAttributes($_GET['User']);
 
-        $this->render('admin', array(
+        $this->render('index', array(
             'model' => $model,
         ));
     }

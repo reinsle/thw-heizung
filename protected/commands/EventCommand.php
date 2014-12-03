@@ -73,20 +73,6 @@ EOD;
     }
 
     /**
-     * Deletes old Events (End-Date > 2 week old) out of the Database
-     */
-    public function actionCleanUp()
-    {
-        date_default_timezone_set('Europe/Berlin');
-        $events = Event::model()->findAll('ende < ?', array(strtotime('-2 weeks')));
-        $count = count($events);
-        foreach ($events as $event) {
-            $event->delete();
-        }
-        echo 'Es wurden ' . $count . " Events gelöscht.\r\n";
-    }
-
-    /**
      * Fetches Content of paramUrl and split them to single calendar elements
      *
      * @param $paramUrl the url to fetch data from
@@ -159,6 +145,20 @@ EOD;
             }
         }
         $event->save();
+    }
+
+    /**
+     * Deletes old Events (End-Date > 2 week old) out of the Database
+     */
+    public function actionCleanUp()
+    {
+        date_default_timezone_set('Europe/Berlin');
+        $events = Event::model()->findAll('ende < ?', array(strtotime('-2 weeks')));
+        $count = count($events);
+        foreach ($events as $event) {
+            $event->delete();
+        }
+        echo 'Es wurden ' . $count . " Events gelöscht.\r\n";
     }
 
 }

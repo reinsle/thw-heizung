@@ -68,6 +68,14 @@ class Event extends BaseEvent
         );
     }
 
+    public function getLocationOptions()
+    {
+        return array(
+            'Unterkunft OV Kempten' => 'Unterkunft OV Kempten',
+            'Irgendwo' => 'Irgendwo'
+        );
+    }
+
     /**
      * apply a hash to the password before store in database
      */
@@ -85,11 +93,30 @@ class Event extends BaseEvent
         }
     }
 
-    public function getLocationOptions(){
-        return array(
-            'Unterkunft OV Kempten' => 'Unterkunft OV Kempten',
-            'Irgendwo' => 'Irgendwo'
-        );
+    public function search()
+    {
+        $criteria = new CDbCriteria;
+
+        $criteria->compare('uid', $this->uid, true);
+        $criteria->compare('start', $this->start);
+        $criteria->compare('ende', $this->ende);
+        $criteria->compare('category', $this->category, true);
+        $criteria->compare('summary', $this->summary, true);
+        $criteria->compare('description', $this->description, true);
+        $criteria->compare('location', $this->location, true);
+        $criteria->compare('create_time', $this->create_time);
+        $criteria->compare('update_time', $this->update_time);
+        $criteria->compare('active', $this->active);
+
+        return new CActiveDataProvider($this, array(
+            'pagination' => array(
+                'pageSize' => Yii::app()->user->getState('pageSize', Yii::app()->params['pageSize']),
+            ),
+            'criteria' => $criteria,
+            'sort' => array(
+                'defaultOrder' => 'start ASC',
+            ),
+        ));
     }
 
 }

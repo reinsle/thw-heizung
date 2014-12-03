@@ -16,7 +16,7 @@ $cs->registerCSSFile('//cdnjs.cloudflare.com/ajax/libs/fullcalendar/1.6.4/fullca
 $cs->registerScriptFile('//cdnjs.cloudflare.com/ajax/libs/fullcalendar/1.6.4/fullcalendar.min.js');
 ?>
 
-    <h1><?php echo GxHtml::encode(Event::label(2)); ?></h1>
+<h1><?php echo GxHtml::encode(Event::label(2)); ?></h1>
 
 <div id='calendar'></div>
 

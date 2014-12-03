@@ -39,6 +39,7 @@
                         array('label' => 'Dienste', 'url' => array('/event'), 'visible' => !Yii::app()->user->isGuest),
                         array('label' => 'Schaltvorg.', 'url' => array('/history'), 'visible' => !Yii::app()->user->isGuest),
                         array('label' => 'Benutzer', 'url' => array('/user'), 'visible' => !Yii::app()->user->isGuest),
+                        array('label' => 'Changelog', 'url' => array('/site/changelog'), 'visible' => !Yii::app()->user->isGuest),
                         array('label' => 'Anmelden', 'url' => array('/site/login'), 'visible' => Yii::app()->user->isGuest),
                         array('label' => 'Abmelden (' . Yii::app()->user->name . ')', 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest)
                     ),
@@ -60,7 +61,7 @@
 
     <div id="footer">
         Copyright &copy; <?php echo date('Y'); ?> by einsle.de.<br/>
-        (v1.6) All Rights Reserved.<br/>
+        (v1.7) All Rights Reserved.<br/>
         <?php echo Yii::powered(); ?>
     </div>
     <!-- footer -->

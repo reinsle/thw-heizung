@@ -1,19 +1,33 @@
 <?php
 
 $this->breadcrumbs = array(
-    User::label(2),
-    'Index',
+    $model->label(2) => array('index'),
+    'Manage',
 );
 
 $this->menu = array(
-    array('label' => 'Create' . ' ' . User::label(), 'url' => array('create')),
-    array('label' => 'Manage' . ' ' . User::label(2), 'url' => array('admin')),
+    array('label' => 'List' . ' ' . $model->label(2), 'url' => array('index')),
+    array('label' => 'Create' . ' ' . $model->label(), 'url' => array('create')),
 );
 ?>
 
-    <h1><?php echo GxHtml::encode(User::label(2)); ?></h1>
+    <h1><?php echo 'Manage' . ' ' . GxHtml::encode($model->label(2)); ?></h1>
 
-<?php $this->widget('zii.widgets.CListView', array(
-    'dataProvider' => $dataProvider,
-    'itemView' => '_view',
-)); 
+<?php $this->widget('bootstrap.widgets.TbGridView', array(
+    'id' => 'user-grid',
+    'dataProvider' => $model->search(),
+    'filter' => $model,
+    'columns' => array(
+        'id',
+        'email',
+        'create_time:datetime',
+        'update_time:datetime',
+        'last_login_time:datetime',
+        array(
+            'class' => 'CButtonColumn',
+            'header' => CHtml::dropDownList('pageSize', Yii::app()->user->getState('pageSize', Yii::app()->params['defaultPageSize']), Yii::app()->params['pageSizeOptions'], array(
+                'onchange' => "$.fn.yiiGridView.update('user-grid',{ data:{pageSize: $(this).val() }})",
+            )),
+        ),
+    ),
+)); ?>
