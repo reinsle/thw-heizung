@@ -26,7 +26,7 @@ $this->menu = array(
         array(
             'class' => 'CButtonColumn',
             'header' => CHtml::dropDownList('pageSize', Yii::app()->user->getState('pageSize', Yii::app()->params['defaultPageSize']), Yii::app()->params['pageSizeOptions'], array(
-                'onchange' => "$.fn.yiiGridView.update('history-grid',{ data:{pageSize: $(this).val() }})",
+                'onchange' => "$.fn.yiiGridView.update('user-grid',{ data:{pageSize: $(this).val() }})",
             )),
         ),
     ),

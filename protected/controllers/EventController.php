@@ -88,6 +88,10 @@ class EventController extends GxController
 
     public function actionAdmin()
     {
+        if (isset($_GET['pageSize'])) {
+            Yii::app()->user->setState('pageSize', (int)$_GET['pageSize']);
+            unset($_GET['pageSize']);
+        }
         $model = new Event('search');
         $model->unsetAttributes();
 
