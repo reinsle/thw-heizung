@@ -42,6 +42,20 @@ class WireCommand extends CConsoleCommand
     }
 
     /**
+     * Manually switch heater on
+     */
+    public function actionSwitchOn()
+    {
+        $output = $this->stripString(shell_exec('/usr/local/bin/gpio read 0'));
+        if ($output === '0') {
+            $model = new History();
+            $model->name = 'Switch heater on';
+            $model->save();
+            shell_exec('/usr/local/bin/gpio write 0 1');
+        }
+    }
+
+    /**
      * Strip control characters from String
      *
      * @param $text text to strip characters from
@@ -57,31 +71,6 @@ class WireCommand extends CConsoleCommand
     }
 
     /**
-     * Show debug informations
-     */
-    public function actionDebug()
-    {
-        $data = History::model()->findAllBySql("SELECT * FROM tbl_history WHERE tst >= datetime('now', '-30 minutes')");
-        echo "History-Eintraege der letzten 30 min: " . count($data) . "\r\n";
-        $data = Event::model()->findAllBySql("SELECT * FROM tbl_event WHERE datetime('now') BETWEEN datetime(datetime(start, 'unixepoch'), '-300 minutes') AND datetime(ende, 'unixepoch') AND LOWER(location) = 'unterkunft ov kempten' AND active = 1");
-        echo "Aktuelle Event-Eintraege: " . count($data) . "\r\n";
-    }
-
-    /**
-     * Manually switch heater on
-     */
-    public function actionSwitchOn()
-    {
-        $output = $this->stripString(shell_exec('/usr/local/bin/gpio read 0'));
-        if ($output === '0') {
-            $model = new History();
-            $model->name = 'Switch heater on';
-            $model->save();
-            shell_exec('/usr/local/bin/gpio write 0 1');
-        }
-    }
-
-    /**
      * Manually switch heater off
      */
     public function actionSwitchOff()
@@ -93,6 +82,17 @@ class WireCommand extends CConsoleCommand
             $model->save();
             shell_exec('/usr/local/bin/gpio write 0 0');
         }
+    }
+
+    /**
+     * Show debug informations
+     */
+    public function actionDebug()
+    {
+        $data = History::model()->findAllBySql("SELECT * FROM tbl_history WHERE tst >= datetime('now', '-30 minutes')");
+        echo "History-Eintraege der letzten 30 min: " . count($data) . "\r\n";
+        $data = Event::model()->findAllBySql("SELECT * FROM tbl_event WHERE datetime('now') BETWEEN datetime(datetime(start, 'unixepoch'), '-300 minutes') AND datetime(ende, 'unixepoch') AND LOWER(location) = 'unterkunft ov kempten' AND active = 1");
+        echo "Aktuelle Event-Eintraege: " . count($data) . "\r\n";
     }
 
 }

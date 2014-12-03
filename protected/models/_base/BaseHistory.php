@@ -24,11 +24,6 @@ abstract class BaseHistory extends GxActiveRecord
         return parent::model($className);
     }
 
-    public function tableName()
-    {
-        return 'tbl_history';
-    }
-
     public static function label($n = 1)
     {
         return Yii::t('app', 'History|Histories', $n);
@@ -37,6 +32,11 @@ abstract class BaseHistory extends GxActiveRecord
     public static function representingColumn()
     {
         return 'name';
+    }
+
+    public function tableName()
+    {
+        return 'tbl_history';
     }
 
     public function rules()

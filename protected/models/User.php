@@ -83,17 +83,6 @@ class User extends BaseUser
     }
 
     /**
-     * apply a hash to the password before store in database
-     */
-    protected function afterValidate()
-    {
-        parent::afterValidate();
-        if (!$this->hasErrors()) {
-            $this->password = $this->hashPassword($this->password);
-        }
-    }
-
-    /**
      * Checks if the given password matches the tored one
      *
      * @param $password the password to check
@@ -102,6 +91,17 @@ class User extends BaseUser
     public function validatePassword($password)
     {
         return $this->hashPassword($password) === $this->password;
+    }
+
+    /**
+     * apply a hash to the password before store in database
+     */
+    protected function afterValidate()
+    {
+        parent::afterValidate();
+        if (!$this->hasErrors()) {
+            $this->password = $this->hashPassword($this->password);
+        }
     }
 
     /**

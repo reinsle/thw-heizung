@@ -8,6 +8,7 @@ $this->pageTitle = Yii::app()->name;
 
 <h3>v1.7</h3>
 <ul>
+    <li>new: move pages to bootstrap layout</li>
     <li>new: add page for display changelog</li>
 </ul>
 

@@ -8,7 +8,7 @@
     var lang = {
         en: {
             days: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-            months: [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ],
+            months: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
             sep: '-',
             format: 'YYYY-MM-DD hh:mm',
             prevMonth: 'Previous month',
@@ -17,77 +17,77 @@
         },
         ja: {
             days: ['日', '月', '火', '水', '木', '金', '土'],
-            months: [ "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" ],
+            months: ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"],
             sep: '/',
             format: 'YYYY/MM/DD hh:mm'
         },
         ru: {
             days: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
-            months: [ "Янв", "Фев", "Мар", "Апр", "Май", "Июн", "Июл", "Авг", "Сен", "Окт", "Ноя", "Дек" ],
+            months: ["Янв", "Фев", "Мар", "Апр", "Май", "Июн", "Июл", "Авг", "Сен", "Окт", "Ноя", "Дек"],
             format: 'DD.MM.YYYY hh:mm'
         },
         br: {
             days: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
-            months: [ "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro" ],
+            months: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
             format: 'DD/MM/YYYY hh:mm'
         },
         pt: {
             days: ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sáb'],
-            months: [ "janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro" ]
+            months: ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"]
         },
         cn: {
             days: ['日', '一', '二', '三', '四', '五', '六'],
-            months: [ "一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月" ]
+            months: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"]
         },
         de: {
             days: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
-            months: [ "Jan", "Feb", "März", "Apr", "Mai", "Juni", "Juli", "Aug", "Sept", "Okt", "Nov", "Dez" ],
+            months: ["Jan", "Feb", "März", "Apr", "Mai", "Juni", "Juli", "Aug", "Sept", "Okt", "Nov", "Dez"],
             format: 'DD.MM.YYYY hh:mm'
         },
         sv: {
             days: ['Sö', 'Må', 'Ti', 'On', 'To', 'Fr', 'Lö'],
-            months: [ "Jan", "Feb", "Mar", "Apr", "Maj", "Juni", "Juli", "Aug", "Sept", "Okt", "Nov", "Dec" ]
+            months: ["Jan", "Feb", "Mar", "Apr", "Maj", "Juni", "Juli", "Aug", "Sept", "Okt", "Nov", "Dec"]
         },
         id: {
             days: ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'],
-            months: [ "Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des" ]
+            months: ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"]
         },
         it: {
             days: ['Dom', 'Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab'],
-            months: [ "Gen", "Feb", "Mar", "Apr", "Mag", "Giu", "Lug", "Ago", "Set", "Ott", "Nov", "Dic" ],
+            months: ["Gen", "Feb", "Mar", "Apr", "Mag", "Giu", "Lug", "Ago", "Set", "Ott", "Nov", "Dic"],
             format: 'DD/MM/YYYY hh:mm'
         },
         tr: {
             days: ['Pz', 'Pzt', 'Sal', 'Çar', 'Per', 'Cu', 'Cts'],
-            months: [ "Ock", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Agu", "Eyl", "Ekm", "Kas", "Arlk" ]
+            months: ["Ock", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Agu", "Eyl", "Ekm", "Kas", "Arlk"]
         },
         es: {
             days: ['dom', 'lun', 'mar', 'miér', 'jue', 'vié', 'sáb'],
-            months: [ "ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic" ],
+            months: ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"],
             format: 'DD/MM/YYYY hh:mm'
         },
         ko: {
             days: ['일', '월', '화', '수', '목', '금', '토'],
-            months: [ "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월" ]
+            months: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"]
         },
         nl: {
             days: ['zo', 'ma', 'di', 'wo', 'do', 'vr', 'za'],
-            months: [ "jan", "feb", "mrt", "apr", "mei", "jun", "jul", "aug", "sep", "okt", "nov", "dec" ],
+            months: ["jan", "feb", "mrt", "apr", "mei", "jun", "jul", "aug", "sep", "okt", "nov", "dec"],
             format: 'DD-MM-YYYY hh:mm'
         },
         cz: {
             days: ['Ne', 'Po', 'Út', 'St', 'Čt', 'Pá', 'So'],
-            months: [ "Led", "Úno", "Bře", "Dub", "Kvě", "Čer", "Čvc", "Srp", "Zář", "Říj", "Lis", "Pro" ],
+            months: ["Led", "Úno", "Bře", "Dub", "Kvě", "Čer", "Čvc", "Srp", "Zář", "Říj", "Lis", "Pro"],
             format: 'DD.MM.YYYY hh:mm'
         },
         fr: {
             days: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
-            months: [ "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre" ],
+            months: ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"],
             format: 'DD-MM-YYYY hh:mm'
         },
         pl: {
             days: ['N', 'Pn', 'Wt', 'Śr', 'Cz', 'Pt', 'So'],
-            months: [ "Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień" ],
+            months: ["Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"],
             sep: '-',
             format: 'YYYY-MM-DD hh:mm',
             prevMonth: 'Poprzedni miesiąc',
@@ -437,7 +437,7 @@
 
         if ((!isFutureOnly || !isCurrentMonth)
             && ((minDate == null) || (minDate < cDate.getTime()))
-            ) {
+        ) {
             var $link_before_month = $('<a>');
             $link_before_month.text('<');
             $link_before_month.prop('alt', translate(locale, 'prevMonth'));
@@ -570,8 +570,8 @@
 
             if (
                 ((minDate != null) && (minDate > realDayObjMN.getTime())) // compare to 23:59:59 on the current day (if MIN is 1pm, then we still need to show this day
-                    || ((maxDate != null) && (maxDate < realDayObj.getTime())) // compare to 00:00:00
-                ) {
+                || ((maxDate != null) && (maxDate < realDayObj.getTime())) // compare to 00:00:00
+            ) {
                 $td.addClass('out_of_range');
             } else if (isFutureOnly && isPast) {
                 $td.addClass('day_in_past');
@@ -649,8 +649,8 @@
 
                     if (
                         ((minDate != null) && (minDate > realDayObj.getTime()))
-                            || ((maxDate != null) && (maxDate < realDayObj.getTime()))
-                        ) {
+                        || ((maxDate != null) && (maxDate < realDayObj.getTime()))
+                    ) {
                         $o.addClass('out_of_range');
                     } else if (isFutureOnly && isPast) {
                         $o.addClass('time_in_past');
@@ -937,8 +937,8 @@
                 var $picker = $(PickerObjects[$input.data('pickerId')]);
                 if ($input.val() != null && (
                     $input.data('beforeVal') == null ||
-                        ( $input.data('beforeVal') != null && $input.data('beforeVal') != $input.val())    )
-                    ) { /* beforeValue == null || beforeValue != nowValue  */
+                    ( $input.data('beforeVal') != null && $input.data('beforeVal') != $input.val())    )
+                ) { /* beforeValue == null || beforeValue != nowValue  */
                     var format = getDateFormat($picker.data('dateFormat'), $picker.data('locale'), $picker.data('dateOnly'));
                     var date = parseDate($input.val(), format);
                     if (date) {

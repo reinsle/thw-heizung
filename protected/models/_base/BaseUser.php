@@ -25,11 +25,6 @@ abstract class BaseUser extends GxActiveRecord
         return parent::model($className);
     }
 
-    public function tableName()
-    {
-        return 'tbl_user';
-    }
-
     public static function label($n = 1)
     {
         return Yii::t('app', 'User|Users', $n);
@@ -38,6 +33,11 @@ abstract class BaseUser extends GxActiveRecord
     public static function representingColumn()
     {
         return 'email';
+    }
+
+    public function tableName()
+    {
+        return 'tbl_user';
     }
 
     public function rules()

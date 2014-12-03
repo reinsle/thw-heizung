@@ -68,6 +68,14 @@ class Event extends BaseEvent
         );
     }
 
+    public function getLocationOptions()
+    {
+        return array(
+            'Unterkunft OV Kempten' => 'Unterkunft OV Kempten',
+            'Irgendwo' => 'Irgendwo'
+        );
+    }
+
     /**
      * apply a hash to the password before store in database
      */
@@ -83,13 +91,6 @@ class Event extends BaseEvent
                 $this->ende = strtotime($attributes['ende']);
             }
         }
-    }
-
-    public function getLocationOptions(){
-        return array(
-            'Unterkunft OV Kempten' => 'Unterkunft OV Kempten',
-            'Irgendwo' => 'Irgendwo'
-        );
     }
 
 }

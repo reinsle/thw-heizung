@@ -29,11 +29,6 @@ abstract class BaseEvent extends GxActiveRecord
         return parent::model($className);
     }
 
-    public function tableName()
-    {
-        return 'tbl_event';
-    }
-
     public static function label($n = 1)
     {
         return Yii::t('app', 'Event|Events', $n);
@@ -42,6 +37,11 @@ abstract class BaseEvent extends GxActiveRecord
     public static function representingColumn()
     {
         return 'uid';
+    }
+
+    public function tableName()
+    {
+        return 'tbl_event';
     }
 
     public function rules()
