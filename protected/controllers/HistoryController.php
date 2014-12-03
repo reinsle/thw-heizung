@@ -27,6 +27,10 @@ class HistoryController extends GxController
 
     public function actionIndex()
     {
+        if (isset($_GET['pageSize'])) {
+            Yii::app()->user->setState('pageSize', (int)$_GET['pageSize']);
+            unset($_GET['pageSize']);
+        }
         $model = new History();
         $this->render('index', array(
             'model' => $model,

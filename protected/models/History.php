@@ -52,4 +52,35 @@ class History extends BaseHistory
         );
     }
 
+    public function search()
+    {
+        $criteria = new CDbCriteria;
+
+        $criteria->compare('id', $this->id);
+        $criteria->compare('name', $this->name, true);
+        $criteria->compare('tst', $this->tst, true);
+        $criteria->compare('create_time', $this->create_time);
+        $criteria->compare('update_time', $this->update_time);
+
+        return new CActiveDataProvider($this, array(
+            'pagination' => array(
+                'pageSize' => Yii::app()->user->getState('pageSize', Yii::app()->params['pageSize']),
+            ),
+            'criteria' => $criteria,
+            'sort' => array(
+                'defaultOrder' => 'tst DESC',
+            ),
+        ));
+    }
+
+
+
+
+
+
+
+
+
+
+
 }
