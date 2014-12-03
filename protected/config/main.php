@@ -1,7 +1,5 @@
 <?php
 
-require_once('_common.inc');
-
 return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
     'name' => 'THW Heizung',
@@ -37,12 +35,20 @@ return array(
 
     // application components
     'components' => array(
+        'format' => array(
+            'datetimeFormat' => 'd.m.Y H:i',
+            'dateFormat' => 'd.m.Y',
+            'numberFormat' => array(
+                'decimals' => '2',
+                'decimalSeparator' => ',',
+                'thousandSeparator' => '.'
+            ),
+        ),
         'user' => array(
             // enable cookie-based authentication
             'allowAutoLogin' => true,
         ),
         // uncomment the following to enable URLs in path-format
-        /*
         'urlManager'=>array(
             'urlFormat'=>'path',
             'rules'=>array(
@@ -51,20 +57,8 @@ return array(
                 '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
             ),
         ),
-        */
         'db' => require(dirname(__FILE__) . '/db.php'),
-        // uncomment the following to use a MySQL database
-        /*
-        'db'=>array(
-            'connectionString' => 'pgsql:host=10.4.3.30;dbname=heizung',
-            'emulatePrepare' => true,
-            'username' => 'heizung',
-            'password' => 'ni.xd.ol',
-            'charset' => 'utf8',
-        ),
-        */
         'errorHandler' => array(
-            // use 'site/error' action to display errors
             'errorAction' => 'site/error',
         ),
         'log' => array(
@@ -92,5 +86,5 @@ return array(
         ),
     ),
 
-    'params' => $commonParams
+    'params' => require(dirname(__FILE__) . '/params.php'),
 );
