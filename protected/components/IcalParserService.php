@@ -11,29 +11,27 @@ class IcalParserService
         }
     }
 
-    private static function parseICalData($newEvent)
+    private static function parseICalData($iCalData)
     {
-        if (array_key_exists('RRULE', $newEvent)) {
-            $data = IcalParserService::doubleExplode(';', '=', $newEvent['RRULE']);
-            $startDate = strtotime($newEvent['DTSTART']);
-            $endDate = strtotime($newEvent['DTEND']);
+        if (array_key_exists('RRULE', $iCalData)) {
+            $data = IcalParserService::doubleExplode(';', '=', $iCalData['RRULE']);
+            $startDate = strtotime($iCalData['DTSTART']);
+            $endDate = strtotime($iCalData['DTEND']);
             $until = strtotime($data['UNTIL']);
             $timeDiff = '+' . $data['INTERVAL'] . ' ';
-            $uid = $newEvent['UID'];
+            $uid = $iCalData['UID'];
             $count = 1;
             if ($data['FREQ'] == 'WEEKLY') {
                 $timeDiff .= 'week';
+            } elseif ($data['FREQ'] == 'MONTHLY') {
+                $timeDiff .= 'month';
             } else {
-                throw new Exception('Frequency ' . $data['FREQ'] . 'unknown!');
+                throw new Exception('Frequency ' . $data['FREQ'] . ' unknown!');
             }
             do {
                 if ($endDate >= strtotime('- 2 weeks')) {
                     $uuid = $uid . '_' . $count;
-                    $event = Event::model()->findByPk($uuid);
-                    if (empty($event)) {
-                        $event = new Event();
-                    }
-                    $event = IcalParserService::convertSingleElement($newEvent, null, $uid . '_' . $count, $startDate, $endDate);
+                    $event = IcalParserService::convertSingleElement($iCalData, null, $uuid, $startDate, $endDate);
                     if (!$event->save()) {
                         var_dump($event->getErrors());
                     }
@@ -43,13 +41,12 @@ class IcalParserService
                 $count++;
             } while ($startDate <= ($until + (22 * 60 * 60)));
         } else {
-            $event = Event::model()->findByPk($newEvent['UID']);
-            if (empty($event)) {
-                $event = new Event();
-            }
-            $event = IcalParserService::convertSingleElement($newEvent, $event);
-            if (!$event->save()) {
-                var_dump($event->getErrors());
+            var_dump($iCalData);
+            if (strtotime($iCalData['DTEND']) >= strtotime('- 2 weeks')) {
+                $event = IcalParserService::convertSingleElement($iCalData);
+                if (!$event->save()) {
+                    var_dump($event->getErrors());
+                }
             }
         }
         return;
@@ -57,6 +54,13 @@ class IcalParserService
 
     private static function convertSingleElement($iCalData, $event = null, $uid = null, $dtStart = null, $dtEnd = null)
     {
+        if (is_null($event)) {
+            if (is_null($uid)) {
+                $event = Event::model()->findByPk($iCalData['UID']);
+            } else {
+                $event = Event::model()->findByPk($uid);
+            }
+        }
         if (empty($event)) {
             $event = new Event();
         }
