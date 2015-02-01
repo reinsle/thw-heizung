@@ -19,12 +19,14 @@ DESCRIPTION
   This command manages Events.
 
 ACTIONS
- * yiic event sync
+ * yiic event fetch
    Fetches events from ical-URL and updates the Database.
 
  * yiic event cleanUp
    Deletes old Events (End-Date > 2 week old) out of the Database.
 
+ * yiic event deleteAllEvents
+   Delete all events stored in Database
 
 EOD;
     }
@@ -40,7 +42,7 @@ EOD;
     /**
      * Fetch data from ical-url to sync Events
      */
-    public function actionFetch()
+    public function actionFetch2()
     {
         date_default_timezone_set('Europe/Berlin');
         $newEvents = $this->icsToArray(Yii::app()->params['ICAL_URL']);
@@ -161,4 +163,44 @@ EOD;
         echo 'Es wurden ' . $count . " Events gelöscht.\r\n";
     }
 
+    /**
+     * Remove all Event Objects from Database
+     */
+    public function actionDeleteAllEvents()
+    {
+        Event::model()->deleteAll();
+    }
+
+    public function actionFetch() {
+        $iCalFileContent = file_get_contents('../test/OKEM-LVBYOVKempten.ics');
+        $iCalData = explode("BEGIN:", $iCalFileContent);
+        foreach ($iCalData as $key => $value) {
+            $data = explode("\n", $value);
+            $data2 = array();
+            foreach($data as $key2 => $value2) {
+                $tt = explode(':', $value2);
+                if (count($tt) == 1) {
+                    $data2[$tt[0]] = null;
+                }
+                if (count($tt) == 2) {
+                    $data2[$tt[0]] = $tt[1];
+                }
+            }
+            $iCalDataMeta[$key] = $data2;
+        }
+        foreach($iCalDataMeta as $data) {
+            IcalParserService::parseICalEvent($data);
+        }
+    }
+
+    public function actionShowEvents() {
+        $events = Event::model()->findAll(array('order'=>'start'));
+        foreach($events as $_event) {
+            print('Start: ' . date('d.m.Y H:i', $_event->start));
+            print('  Ende: ' . date('d.m.Y H:i', $_event->ende));
+            print(' Location: ' . $_event->location);
+            print(' Summary: ' . $_event->summary);
+            print("\n");
+        }
+    }
 }
