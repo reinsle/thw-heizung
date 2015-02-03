@@ -39,6 +39,22 @@ EOD;
         $this->actionFetch();
     }
 
+    public function actionFetch($iCalUrl = null)
+    {
+        if (is_null($iCalUrl)) {
+            $iCalUrl = Yii::app()->params['ICAL_URL'];
+        }
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $iCalUrl);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.13) Gecko/20080311 Firefox/2.0.0.13');
+        $iCalFileContent = curl_exec($ch);
+        $iCalDataMeta = $this->convertICalToArray($iCalFileContent);
+        foreach ($iCalDataMeta as $data) {
+             IcalParserService::parseICalEvent($data);
+        }
+    }
+
     /**
      * Fetch data from ical-url to sync Events
      */
@@ -171,36 +187,49 @@ EOD;
         Event::model()->deleteAll();
     }
 
-    public function actionFetch() {
-        $iCalFileContent = file_get_contents('../test/OKEM-LVBYOVKempten.ics');
-        $iCalData = explode("BEGIN:", $iCalFileContent);
-        foreach ($iCalData as $key => $value) {
-            $data = explode("\n", $value);
-            $data2 = array();
-            foreach($data as $key2 => $value2) {
-                $tt = explode(':', $value2);
-                if (count($tt) == 1) {
-                    $data2[$tt[0]] = null;
-                }
-                if (count($tt) == 2) {
-                    $data2[$tt[0]] = $tt[1];
-                }
-            }
-            $iCalDataMeta[$key] = $data2;
-        }
-        foreach($iCalDataMeta as $data) {
-            IcalParserService::parseICalEvent($data);
-        }
-    }
-
-    public function actionShowEvents() {
-        $events = Event::model()->findAll(array('order'=>'start'));
-        foreach($events as $_event) {
+    public function actionShowEvents()
+    {
+        $events = Event::model()->findAll(array('order' => 'start'));
+        foreach ($events as $_event) {
             print('Start: ' . date('d.m.Y H:i', $_event->start));
             print('  Ende: ' . date('d.m.Y H:i', $_event->ende));
             print(' Location: ' . $_event->location);
             print(' Summary: ' . $_event->summary);
             print("\n");
         }
+    }
+
+    /**
+     * @param $iCalFileContent
+     * @return
+     */
+    private function convertICalToArray($iCalFileContent)
+    {
+        $iCalData = explode("BEGIN:", $iCalFileContent);
+        foreach ($iCalData as $key => $value) {
+            $data = explode("\n", $value);
+            $data2 = array();
+            foreach ($data as $key2 => $value2) {
+                $tt = explode(':', $value2);
+                if (count($tt) == 1) {
+                    $data2[$tt[0]] = null;
+                }
+                if (count($tt) == 2) {
+                    if (strpos($tt[0], 'VALUE') > 0) {
+                        $k = explode(';', $tt[0])[0];
+                        if ($k == 'DTSTART') {
+                            $v = $tt[1] . 'T000000Z';
+                        } else {
+                            $v = $tt[1] . 'T235959Z';
+                        }
+                        $data2[$k] = $v;
+                    } else {
+                        $data2[$tt[0]] = $tt[1];
+                    }
+                }
+            }
+            $iCalDataMeta[$key] = $data2;
+        }
+        return $iCalDataMeta;
     }
 }

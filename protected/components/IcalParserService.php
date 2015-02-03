@@ -21,7 +21,9 @@ class IcalParserService
             $timeDiff = '+' . $data['INTERVAL'] . ' ';
             $uid = $iCalData['UID'];
             $count = 1;
-            if ($data['FREQ'] == 'WEEKLY') {
+            if ($data['FREQ'] == 'DAILY') {
+                $timeDiff .= 'day';
+            } elseif ($data['FREQ'] == 'WEEKLY') {
                 $timeDiff .= 'week';
             } elseif ($data['FREQ'] == 'MONTHLY') {
                 $timeDiff .= 'month';
